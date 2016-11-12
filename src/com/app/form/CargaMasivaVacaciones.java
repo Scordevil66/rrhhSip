@@ -17,17 +17,18 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import jxl.read.biff.BiffException;
 
 /**
  *
  * @author win
  */
-public class CargaMasivaUsuario extends javax.swing.JFrame {
+public class CargaMasivaVacaciones extends javax.swing.JFrame {
 
     /**
      * Creates new form CargaMasivaUsuario
      */
-    public CargaMasivaUsuario() {
+    public CargaMasivaVacaciones() {
         initComponents();
 
         init();
@@ -67,7 +68,7 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
                     String formato1 = forms[0];
                     String formato = forms[1];
 
-                    if (!(formato.equals("csv"))) {
+                    if (!(formato.equals("xls"))) {
                         lPath.setText("");
                         lNombre.setText("");
                         bAceptar.setEnabled(false);
@@ -147,7 +148,7 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel1.setText("Carga Masiva de Usuarios");
+        jLabel1.setText("Carga Masiva de Vacaciones");
 
         jLabel2.setText("Seleccione el Archivo: ");
 
@@ -223,9 +224,11 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
 
         LeerArchivoDeExcel lae = new LeerArchivoDeExcel();
         try {
-            lae.CargaDeFormularios(lPath.getText());
+            lae.ActualizarVacaciones(lPath.getText());
         } catch (IOException ex) {
-            Logger.getLogger(CargaMasivaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CargaMasivaVacaciones.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BiffException ex) {
+            Logger.getLogger(CargaMasivaVacaciones.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_bAceptarActionPerformed
@@ -247,20 +250,21 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CargaMasivaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CargaMasivaVacaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CargaMasivaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CargaMasivaVacaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CargaMasivaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CargaMasivaVacaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CargaMasivaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CargaMasivaVacaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CargaMasivaUsuario().setVisible(true);
+                new CargaMasivaVacaciones().setVisible(true);
 
             }
         });

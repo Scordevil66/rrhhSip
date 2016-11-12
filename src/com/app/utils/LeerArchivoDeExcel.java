@@ -38,7 +38,7 @@ public class LeerArchivoDeExcel {
     }
 
     //Funcional
-    public static void ActualizarVacaciones(String path, int idEmpresa) throws IOException, BiffException {
+    public static void ActualizarVacaciones(String path) throws IOException, BiffException {
 
         boolean equals1 = false, equals2 = false, equals3 = false, equals4 = false, equals5 = false;
         File file = new File(path);
@@ -159,8 +159,11 @@ public class LeerArchivoDeExcel {
             String estrato = array[15].trim();
             String correo = array[16].trim();
             
+             System.out.println("nombre registrado "+nombres);
                       
         }
+        
+       
          
         usuarios_import.close();
                           
