@@ -71,10 +71,13 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
                         lPath.setText("");
                         lNombre.setText("");
                         bAceptar.setEnabled(false);
+                        
+                        JOptionPane.showMessageDialog(null, "Formato Incorrecto");
 
                         //Formato Incorrecto
                     }else{
                       bAceptar.setEnabled(true);
+                      vn.setVisible(false);
                     }
 
 //                            LeerArchivoDeExcel lae = new LeerArchivoDeExcel();
@@ -83,7 +86,7 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
 //                            } catch (IOException ex) {
 //                                Logger.getLogger(CargaMasivaUsuario.class.getName()).log(Level.SEVERE, null, ex);
 //                            }
-                    vn.setVisible(false);
+                    
 
                 } else if (comando.equals(JFileChooser.CANCEL_SELECTION)) {
                     ruta.setText("");

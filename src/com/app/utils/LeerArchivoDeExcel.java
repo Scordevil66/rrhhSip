@@ -16,6 +16,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -77,9 +78,11 @@ public class LeerArchivoDeExcel {
                     
                 }
             } else {
+                JOptionPane.showMessageDialog(null, "Estructura Incorrecta");
                 //Estructura incorrecta
             }
         } else {
+            JOptionPane.showMessageDialog(null, "Archivo no encontrado");
            // archivo no encontrado
         }
     }

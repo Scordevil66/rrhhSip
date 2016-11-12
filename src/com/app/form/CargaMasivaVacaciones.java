@@ -73,6 +73,7 @@ public class CargaMasivaVacaciones extends javax.swing.JFrame {
                         lNombre.setText("");
                         bAceptar.setEnabled(false);
 
+                        JOptionPane.showMessageDialog(null, "Formato Incorrecto");
                         //Formato Incorrecto
                     }else{
                       bAceptar.setEnabled(true);
