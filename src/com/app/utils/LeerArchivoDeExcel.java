@@ -136,7 +136,9 @@ public class LeerArchivoDeExcel {
 //           // archivo no encontrado
 //        }
 //    }
-    public static void CargaDeFormularios(String path) throws FileNotFoundException, IOException {
+    public static int CargaDeFormularios(String path) throws FileNotFoundException, IOException {
+        
+        int valor = 0;
 
         SadRecursoHumano_TO srrhh = new SadRecursoHumano_TO();
 
@@ -168,17 +170,37 @@ public class LeerArchivoDeExcel {
             String estrato = array[15].trim();
             String correo = array[16].trim();
 
-            System.out.println("nombre registrado " + nombres);
+            if (!(cedula.equals(""))) {
 
-            try {
-                userController.registrarClientes(srrhh);
-            } catch (Exception ex) {
-                Logger.getLogger(CargaManualUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                srrhh.setRhNumIden(Long.parseLong(cedula));
+                srrhh.setRhNombres(nombres);
+                srrhh.setRhApellido1(apellido1);
+                srrhh.setRhApellido2(apellido2);
+                srrhh.setRhDireccion(direccion);
+                if (!(celular.equals(""))) {
+                    srrhh.setRhCelular(Long.parseLong(celular));
+                } else {
+                    srrhh.setRhCelular(0);
+                }
+                srrhh.setRhCorreo(correo);
+
+//      srrhh.set
+                try {
+                    int a = userController.registrarClientes(srrhh);
+
+                } catch (Exception ex) {
+                    Logger.getLogger(CargaManualUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
             }
+            
+            valor++;
 
         }
 
         usuarios_import.close();
+        
+        return valor;
 
     }
 

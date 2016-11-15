@@ -11,6 +11,7 @@ import com.app.models.SadRecursoHumano_TO;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -508,34 +509,60 @@ public class CargaManualUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_cedulaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-               
+
         SadRecursoHumano_TO srrhh = new SadRecursoHumano_TO();
-        
+
         UserController userController = new UserController();
 
-//        srrhh.setRhNumIden(Long.parseLong(tf_cedula.getText()));
-//        srrhh.setRhNombres(tf_nombres.getText());
-//        srrhh.setRhApellido1(tf_apellido1.getText());
-//        srrhh.setRhApellido2(tf_apellido2.getText());
-//        srrhh.setRhDireccion(tf_direccion.getText());
-//        srrhh.setRhBarrio(tf_barrio.getText());
-//        srrhh.setRhCelular(Long.parseLong(tf_celular.getText()));
-//        srrhh.setRhCorreo(tf_correo.getText());
-//        srrhh.setRhNombreEmergencia(tf_nombreApellidoEmergencia.getText());
-//        srrhh.setRhTelEmergencia(tf_telefonoEmergencia.getText());
-//      srrhh.set
-        try {
-            userController.registrarClientes(srrhh);
-        } catch (Exception ex) {
-            Logger.getLogger(CargaManualUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if (!(tf_cedula.getText().equals(""))) {
 
+            srrhh.setRhNumIden(Long.parseLong(tf_cedula.getText()));
+            srrhh.setRhNombres(tf_nombres.getText());
+            srrhh.setRhApellido1(tf_apellido1.getText());
+            srrhh.setRhApellido2(tf_apellido2.getText());
+            srrhh.setRhDireccion(tf_direccion.getText());
+            srrhh.setRhBarrio(tf_barrio.getText());
+            if (!(tf_celular.getText().equals(""))) {
+                srrhh.setRhCelular(Long.parseLong(tf_celular.getText()));
+            } else {
+                srrhh.setRhCelular(0);
+            }
+            srrhh.setRhCorreo(tf_correo.getText());
+            srrhh.setRhNombreEmergencia(tf_nombreApellidoEmergencia.getText());
+            srrhh.setRhTelEmergencia(tf_telefonoEmergencia.getText());
+
+//      srrhh.set
+            try {
+                int valor = userController.registrarClientes(srrhh);
+                if (valor > 0) {
+                    JOptionPane.showMessageDialog(null, "Registro realizado satisfactoriamente");
+
+                        tf_cedula.setText("");
+                        tf_nombres.setText("");
+                        tf_apellido1.setText("");
+                        tf_apellido2.setText("");
+                        tf_direccion.setText("");
+                        tf_barrio.setText("");
+                        tf_celular.setText("");
+                        tf_correo.setText("");
+                        tf_nombreApellidoEmergencia.setText("");
+                        tf_telefonoEmergencia.setText("");
+                        tf_telefono.setText("");
+
+                    }
+                }catch (Exception ex) {
+                Logger.getLogger(CargaManualUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            }else {
+            JOptionPane.showMessageDialog(null, "El número de Identificación no puede estar vacio");
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

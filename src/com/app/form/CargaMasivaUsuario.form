@@ -66,7 +66,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="36" max="32767" attributes="0"/>
-                              <Component id="lNombre" min="-2" pref="231" max="-2" attributes="0"/>
+                              <Component id="l_nombre" min="-2" pref="231" max="-2" attributes="0"/>
                           </Group>
                           <Component id="bAceptar" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
                       </Group>
@@ -90,7 +90,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButton1" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="lNombre" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="l_nombre" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="bAceptar" min="-2" max="-2" attributes="0"/>
@@ -134,7 +134,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAceptarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lNombre">
+    <Component class="javax.swing.JLabel" name="l_nombre">
     </Component>
   </SubComponents>
 </Form>

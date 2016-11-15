@@ -34,23 +34,23 @@ public class UserController {
                     + "`rhCodCargo`, `rhCodDeptoCargo`, `rhCodCiudadCargo`,"
                     + " `rhNombreEmergencia`, `rhTelEmergencia`, `rhCodCcosto`, "
                     + "`rhMedsAlergico`, `rhImagen`, `rhCodEstado`, `rhCorreo`)"
-                    + " VALUES ('20606989', NULL,"
+                    + " VALUES ('"+usuario.getRhNumIden()+"', NULL,"
                     + " NULL, NULL,"
-                    + " 'Gustavo', 'Cardenas', "
-                    + "'Garcia', NULL, "
-                    + "NULL, 'calle 100',"
-                    + " 'mazuren', NULL,"
+                    + " '"+usuario.getRhNombres()+"', '"+usuario.getRhApellido1()+"', "
+                    + "'"+usuario.getRhApellido2()+"', NULL, "
+                    + "NULL, '"+usuario.getRhDireccion()+"',"
+                    + " '"+usuario.getRhBarrio()+"', NULL,"
                     + " NULL, NULL,"
-                    + " '16666666', '3156666666',"
-                    + " NULL, NULL,"
-                    + " NULL, NULL,"
+                    + " '"+usuario.getRhTelefono()+"', '"+usuario.getRhCelular()+"',"
                     + " NULL, NULL,"
                     + " NULL, NULL,"
                     + " NULL, NULL,"
-                    + " 'Albania Donis', '3157777777',"
+                    + " NULL, NULL,"
+                    + " NULL, NULL,"
+                    + " '"+usuario.getRhNombreEmergencia()+"', '"+usuario.getRhTelEmergencia()+"',"
                     + " NULL, NULL,"
                     + " NULL, '',"
-                    + " 'cardenasg66@gmail.com');";
+                    + " '"+usuario.getRhCorreo()+"');";
 
             System.out.println("sql: " + sql);
 

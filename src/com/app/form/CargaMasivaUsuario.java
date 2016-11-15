@@ -61,7 +61,7 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
                     ruta.setText(archivoSeleccionado.getAbsolutePath());
                     nombreArchivo.setText(archivoSeleccionado.getName());
                     lPath.setText(archivoSeleccionado.getAbsolutePath());
-                    lNombre.setText(archivoSeleccionado.getName());
+                    l_nombre.setText(archivoSeleccionado.getName());
 
                     String[] forms = archivoSeleccionado.getName().split("\\.");
                     String formato1 = forms[0];
@@ -69,15 +69,15 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
 
                     if (!(formato.equals("csv"))) {
                         lPath.setText("");
-                        lNombre.setText("");
+                        l_nombre.setText("");
                         bAceptar.setEnabled(false);
-                        
+
                         JOptionPane.showMessageDialog(null, "Formato Incorrecto");
 
                         //Formato Incorrecto
-                    }else{
-                      bAceptar.setEnabled(true);
-                      vn.setVisible(false);
+                    } else {
+                        bAceptar.setEnabled(true);
+                        vn.setVisible(false);
                     }
 
 //                            LeerArchivoDeExcel lae = new LeerArchivoDeExcel();
@@ -86,13 +86,11 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
 //                            } catch (IOException ex) {
 //                                Logger.getLogger(CargaMasivaUsuario.class.getName()).log(Level.SEVERE, null, ex);
 //                            }
-                    
-
                 } else if (comando.equals(JFileChooser.CANCEL_SELECTION)) {
                     ruta.setText("");
                     nombreArchivo.setText("");
                     lPath.setText("");
-                    lNombre.setText("");
+                    l_nombre.setText("");
 
                     bAceptar.setEnabled(false);
                     vn.setVisible(false);
@@ -124,7 +122,7 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         lPath = new javax.swing.JLabel();
         bAceptar = new javax.swing.JButton();
-        lNombre = new javax.swing.JLabel();
+        l_nombre = new javax.swing.JLabel();
 
         jFileChooser2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,7 +183,7 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                                .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(l_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(bAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
@@ -202,7 +200,7 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(l_nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(bAceptar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -224,9 +222,17 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
 
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
 
-        LeerArchivoDeExcel lae = new LeerArchivoDeExcel();
         try {
-            lae.CargaDeFormularios(lPath.getText());
+            int valor = LeerArchivoDeExcel.CargaDeFormularios(lPath.getText());
+
+            if (valor > 0) {
+                JOptionPane.showMessageDialog(null, "Registro realizado satisfactoriamente");
+                
+                l_nombre.setText("");
+                bAceptar.setEnabled(false);
+
+            }
+            
         } catch (IOException ex) {
             Logger.getLogger(CargaMasivaUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -276,7 +282,7 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
     private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lNombre;
     private javax.swing.JLabel lPath;
+    private javax.swing.JLabel l_nombre;
     // End of variables declaration//GEN-END:variables
 }
