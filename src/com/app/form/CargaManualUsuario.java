@@ -5,6 +5,13 @@
  */
 package com.app.form;
 
+import com.app.conexion.ConexionSQL;
+import com.app.controller.UserController;
+import com.app.models.SadRecursoHumano_TO;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Gustavo
@@ -16,7 +23,7 @@ public class CargaManualUsuario extends javax.swing.JFrame {
      */
     public CargaManualUsuario() {
         initComponents();
-        
+
         this.setExtendedState(this.MAXIMIZED_BOTH);
     }
 
@@ -501,7 +508,29 @@ public class CargaManualUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_cedulaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+               
+        SadRecursoHumano_TO srrhh = new SadRecursoHumano_TO();
+        
+        UserController userController = new UserController();
+
+//        srrhh.setRhNumIden(Long.parseLong(tf_cedula.getText()));
+//        srrhh.setRhNombres(tf_nombres.getText());
+//        srrhh.setRhApellido1(tf_apellido1.getText());
+//        srrhh.setRhApellido2(tf_apellido2.getText());
+//        srrhh.setRhDireccion(tf_direccion.getText());
+//        srrhh.setRhBarrio(tf_barrio.getText());
+//        srrhh.setRhCelular(Long.parseLong(tf_celular.getText()));
+//        srrhh.setRhCorreo(tf_correo.getText());
+//        srrhh.setRhNombreEmergencia(tf_nombreApellidoEmergencia.getText());
+//        srrhh.setRhTelEmergencia(tf_telefonoEmergencia.getText());
+//      srrhh.set
+        try {
+            userController.registrarClientes(srrhh);
+        } catch (Exception ex) {
+            Logger.getLogger(CargaManualUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

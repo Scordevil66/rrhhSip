@@ -5,6 +5,9 @@
  */
 package com.app.utils;
 
+import com.app.controller.UserController;
+import com.app.form.CargaManualUsuario;
+import com.app.models.SadRecursoHumano_TO;
 import com.csvreader.CsvReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,6 +19,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import jxl.Cell;
 import jxl.Sheet;
@@ -29,7 +34,6 @@ import jxl.read.biff.BiffException;
  * @author Gustavo Cardenas
  */
 public class LeerArchivoDeExcel {
-
 
     public static void main(String[] args) throws IOException, BiffException {
 //
@@ -66,7 +70,7 @@ public class LeerArchivoDeExcel {
             }
 
             if (equals1 == true && equals2 == true && equals3 == true && equals4 == true
-                    && equals5 == true ) {
+                    && equals5 == true) {
 
                 for (int fila = 1; fila < sheet.getRows(); fila++) { //recorremos las filas
 
@@ -75,7 +79,7 @@ public class LeerArchivoDeExcel {
                     fechaInicial = sheet.getCell(2, fila).getContents();
                     fichaFinal = sheet.getCell(3, fila).getContents();
                     diasPendientes = sheet.getCell(4, fila).getContents();
-                    
+
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Estructura Incorrecta");
@@ -83,10 +87,10 @@ public class LeerArchivoDeExcel {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Archivo no encontrado");
-           // archivo no encontrado
+            // archivo no encontrado
         }
     }
-    
+
 //    public static void CargaDeFormularios(String path, int idEmpresa) throws IOException, BiffException {
 //
 //        boolean equals1 = false, equals2 = false, equals3 = false, equals4 = false, equals5 = false, equals6 = false, equals7 = false, equals8 = false, equals9 = false, equals10 = false, equals11 = false, equals12 = false, equals13 = false, equals14 = false, equals15 = false, equals16 = false, equals17 = false, equals18 = false;
@@ -132,18 +136,20 @@ public class LeerArchivoDeExcel {
 //           // archivo no encontrado
 //        }
 //    }
-    
-    public static void CargaDeFormularios(String path) throws FileNotFoundException, IOException{
-    
+    public static void CargaDeFormularios(String path) throws FileNotFoundException, IOException {
+
+        SadRecursoHumano_TO srrhh = new SadRecursoHumano_TO();
+
+        UserController userController = new UserController();
+
         CsvReader usuarios_import = new CsvReader(path);
         usuarios_import.readHeaders();
-         
-        while (usuarios_import.readRecord())
-        {
+
+        while (usuarios_import.readRecord()) {
             String text = usuarios_import.get(0);
-            
+
             String[] array = text.split(";");
-            
+
             String cedula = array[0].trim();
             String depExpCed = array[1].trim();
             String ciudadExp = array[2].trim();
@@ -161,15 +167,19 @@ public class LeerArchivoDeExcel {
             String tipoVivienda = array[14].trim();
             String estrato = array[15].trim();
             String correo = array[16].trim();
-            
-             System.out.println("nombre registrado "+nombres);
-                      
+
+            System.out.println("nombre registrado " + nombres);
+
+            try {
+                userController.registrarClientes(srrhh);
+            } catch (Exception ex) {
+                Logger.getLogger(CargaManualUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-        
-       
-         
+
         usuarios_import.close();
-                          
+
     }
 
 }
