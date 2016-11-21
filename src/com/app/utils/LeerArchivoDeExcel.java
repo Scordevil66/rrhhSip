@@ -6,7 +6,7 @@
 package com.app.utils;
 
 import com.app.controller.UserController;
-import com.app.form.CargaManualUsuario;
+import com.app.form.CargaManualUsuarios;
 import com.app.models.SadRecursoHumano_TO;
 import com.csvreader.CsvReader;
 import java.io.BufferedWriter;
@@ -190,7 +190,7 @@ public class LeerArchivoDeExcel {
                     int a = userController.registrarClientes(srrhh);
 
                 } catch (Exception ex) {
-                    Logger.getLogger(CargaManualUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }

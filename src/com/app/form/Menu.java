@@ -5,6 +5,10 @@
  */
 package com.app.form;
 
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author GERFOR
@@ -17,7 +21,8 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
 
-        this.setExtendedState(CargaManualVacaciones.MAXIMIZED_BOTH);
+        this.setExtendedState(this.MAXIMIZED_BOTH);
+
     }
 
     /**
@@ -29,15 +34,21 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu4 = new javax.swing.JMenu();
         dpnEscritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+
+        jMenu4.setText("jMenu4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +62,24 @@ public class Menu extends javax.swing.JFrame {
             dpnEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 279, Short.MAX_VALUE)
         );
+
+        jMenu5.setText("Inicio");
+
+        jMenuItem6.setText("Cambio de Clave");
+        jMenu5.add(jMenuItem6);
+
+        jMenuItem7.setText("Cambio de Usuario");
+        jMenu5.add(jMenuItem7);
+
+        jMenuItem8.setText("Salir");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem8);
+
+        jMenuBar1.add(jMenu5);
 
         jMenu1.setText("Usuario");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -97,14 +126,6 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Salir");
-        jMenu3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu3ActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(jMenu3);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,20 +143,28 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        CargaManualUsuarios cmu = new CargaManualUsuarios();
-        dpnEscritorio.add(cmu);
-        cmu.setVisible(true);
+        try {
+            CargaManualUsuarios cmu = new CargaManualUsuarios();
+
+            dpnEscritorio.add(cmu);
+            cmu.setMaximum(true);
+            cmu.setVisible(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        CargaManualVacaciones cmv = new CargaManualVacaciones();
+        ActualizacionManualVacaciones cmv = new ActualizacionManualVacaciones();
         dpnEscritorio.add(cmv);
+        try {
+            cmv.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         cmv.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jMenu3ActionPerformed
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
@@ -143,15 +172,22 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         CargaMasivaUsuario cmau = new CargaMasivaUsuario();
-        dpnEscritorio.add(cmau);
+        cmau.setLocationRelativeTo(null);
+//        dpnEscritorio.add(cmau);
         cmau.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         CargaMasivaVacaciones cmav = new CargaMasivaVacaciones();
-        dpnEscritorio.add(cmav);
+        cmav.setLocationRelativeTo(null);
+//        dpnEscritorio.add(cmav);
         cmav.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        System.exit(0);
+        setDefaultCloseOperation(Menu.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,11 +228,15 @@ public class Menu extends javax.swing.JFrame {
     public static javax.swing.JDesktopPane dpnEscritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }

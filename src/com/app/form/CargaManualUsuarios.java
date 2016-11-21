@@ -23,6 +23,7 @@ public class CargaManualUsuarios extends javax.swing.JInternalFrame {
      */
     public CargaManualUsuarios() {
         initComponents();
+
     }
 
     /**
@@ -101,6 +102,9 @@ public class CargaManualUsuarios extends javax.swing.JInternalFrame {
         jLabel30 = new javax.swing.JLabel();
         tf_telefonoEmergencia = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
+
+        setClosable(true);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("Creación de Usuarios");
@@ -501,7 +505,7 @@ public class CargaManualUsuarios extends javax.swing.JInternalFrame {
         try {
             userController = new UserController();
         } catch (SQLException ex) {
-            Logger.getLogger(CargaManualUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if (!(tf_cedula.getText().equals(""))) {
@@ -541,7 +545,7 @@ public class CargaManualUsuarios extends javax.swing.JInternalFrame {
 
                 }
             }catch (Exception ex) {
-                Logger.getLogger(CargaManualUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }else {
