@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -35,7 +36,7 @@ import jxl.read.biff.BiffException;
  */
 public class LeerArchivoDeExcel {
 
-    public static void main(String[] args) throws IOException, BiffException {
+    public static void main(String[] args) throws IOException, BiffException, FileNotFoundException, SQLException {
 //
         String a = "D:\\RRHH/Ejemplo archivos carga masiva.csv";
 //
@@ -136,7 +137,7 @@ public class LeerArchivoDeExcel {
 //           // archivo no encontrado
 //        }
 //    }
-    public static int CargaDeFormularios(String path) throws FileNotFoundException, IOException {
+    public static int CargaDeFormularios(String path) throws FileNotFoundException, IOException, SQLException {
         
         int valor = 0;
 

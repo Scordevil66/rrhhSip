@@ -7,6 +7,7 @@ package com.app.controller;
 
 import com.app.conexion.ConexionSQL;
 import com.app.models.SadRecursoHumano_TO;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -15,7 +16,11 @@ import java.sql.Statement;
  */
 public class UserController {
 
-    Statement st = ConexionSQL.conexion();
+    Statement st;
+
+    public UserController() throws SQLException {
+        this.st = ConexionSQL.conexion();
+    }
 
     public int registrarClientes(SadRecursoHumano_TO usuario) throws Exception {
 

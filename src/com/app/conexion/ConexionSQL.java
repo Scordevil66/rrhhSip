@@ -14,6 +14,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+
 /**
  *
  * @author ContabilidadPC
@@ -27,7 +29,7 @@ public class ConexionSQL {
     static String user = "";
     static String url = "";
 
-    public static Statement conexion() {
+    public static Statement conexion() throws SQLException {
 
         try {
 

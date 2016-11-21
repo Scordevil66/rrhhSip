@@ -10,7 +10,9 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -234,6 +236,8 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
             }
             
         } catch (IOException ex) {
+            Logger.getLogger(CargaMasivaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(CargaMasivaUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
 
