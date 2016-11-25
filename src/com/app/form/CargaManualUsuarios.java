@@ -30,6 +30,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CargaManualUsuarios
+     *
      * @throws java.sql.SQLException
      */
     public CargaManualUsuarios() throws SQLException {
@@ -58,6 +59,42 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             estados = estadoController.consultarEstado();
             tViviendas = tipoViviendaController.consultarTipoVivienda();
             cargos = cargoController.consultarCargo();
+
+            for (int i = 0; i < departamentos.size(); i++) {
+                jComboBox1.addItem(departamentos.get(i).getCdsCodDepto() + "-" + departamentos.get(i).getCdsDepto());
+            }
+
+            for (int i = 0; i < ciudades.size(); i++) {
+                jComboBox2.addItem(ciudades.get(i).getCdsCodCiudad() + "-" + ciudades.get(i).getCdsCiudad());
+            }
+
+            for (int i = 0; i < departamentos.size(); i++) {
+                jComboBox3.addItem(departamentos.get(i).getCdsCodDepto() + "-" + departamentos.get(i).getCdsDepto());
+            }
+
+            for (int i = 0; i < ciudades.size(); i++) {
+                jComboBox4.addItem(ciudades.get(i).getCdsCodCiudad() + "-" + ciudades.get(i).getCdsCiudad());
+            }
+
+            for (int i = 0; i < estados.size(); i++) {
+                jComboBox9.addItem(estados.get(i).getEstCodigo() + "-" + estados.get(i).getEstDescripcion());
+            }
+
+            for (int i = 0; i < cargos.size(); i++) {
+                jComboBox10.addItem(cargos.get(i).getCarCodigo() + "-" + cargos.get(i).getCarDescripcion());
+            }
+
+            for (int i = 0; i < departamentos.size(); i++) {
+                jComboBox12.addItem(departamentos.get(i).getCdsCodDepto() + "-" + departamentos.get(i).getCdsDepto());
+            }
+
+            for (int i = 0; i < ciudades.size(); i++) {
+                jComboBox13.addItem(ciudades.get(i).getCdsCodCiudad() + "-" + ciudades.get(i).getCdsCiudad());
+            }
+
+            for (int i = 0; i < tViviendas.size(); i++) {
+                jComboBox15.addItem(tViviendas.get(i).getStvCodigo() + "-" + tViviendas.get(i).getStvDescripion());
+            }
 
         } catch (Exception ex) {
             Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -372,12 +409,12 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel18))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_correo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                                    .addComponent(tf_correo, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jComboBox9, javax.swing.GroupLayout.Alignment.TRAILING, 0, 255, Short.MAX_VALUE)
-                                    .addComponent(jComboBox10, javax.swing.GroupLayout.Alignment.TRAILING, 0, 255, Short.MAX_VALUE)
-                                    .addComponent(jComboBox11, javax.swing.GroupLayout.Alignment.TRAILING, 0, 255, Short.MAX_VALUE)
-                                    .addComponent(jComboBox12, javax.swing.GroupLayout.Alignment.TRAILING, 0, 255, Short.MAX_VALUE)
-                                    .addComponent(jComboBox13, javax.swing.GroupLayout.Alignment.TRAILING, 0, 255, Short.MAX_VALUE)
+                                    .addComponent(jComboBox10, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox11, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox12, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox13, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox14, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox15, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap())
@@ -452,7 +489,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(tf_barrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(tf_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -506,13 +543,13 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 10, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
                             .addComponent(tf_celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -520,14 +557,14 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel31))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel31)
+                .addContainerGap(573, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
