@@ -6,6 +6,7 @@
 package com.app.form;
 
 import java.beans.PropertyVetoException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -151,6 +152,8 @@ public class Menu extends javax.swing.JFrame {
             cmu.setMaximum(true);
             cmu.setVisible(true);
         } catch (PropertyVetoException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed

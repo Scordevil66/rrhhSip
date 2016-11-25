@@ -26,10 +26,11 @@ import javax.swing.JOptionPane;
  *
  * @author GERFOR
  */
-public class CargaManualUsuarios extends javax.swing.JInternalFrame {
+public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CargaManualUsuarios
+     * @throws java.sql.SQLException
      */
     public CargaManualUsuarios() throws SQLException {
         initComponents();
