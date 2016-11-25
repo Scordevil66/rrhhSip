@@ -5,6 +5,8 @@
  */
 package rrhh;
 
+import com.app.form.frmLogin;
+
 /**
  *
  * @author Gustavo
@@ -15,7 +17,9 @@ public class Rrhh {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        frmLogin miLogin = new frmLogin();
+        miLogin.setLocationRelativeTo(null);
+        miLogin.setVisible(true);
     }
-    
+
 }
