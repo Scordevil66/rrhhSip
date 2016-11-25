@@ -64,7 +64,12 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu5.setText("Inicio");
 
-        jMenuItem6.setText("Cambio de Clave");
+        jMenuItem6.setText("Cambio de Usuario");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem6);
 
         jMenuItem8.setText("Salir");
@@ -184,6 +189,10 @@ public class Menu extends javax.swing.JFrame {
         System.exit(0);
         setDefaultCloseOperation(Menu.EXIT_ON_CLOSE);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
