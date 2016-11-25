@@ -5,9 +5,19 @@
  */
 package com.app.form;
 
+import com.app.controller.CargoController;
+import com.app.controller.CiudadDeptoController;
+import com.app.controller.EstadoController;
+import com.app.controller.TipoViviendaController;
 import com.app.controller.UserController;
+import com.app.models.SadCargo_TO;
+import com.app.models.SadCiudadDepto_TO;
+import com.app.models.SadEstado_TO;
 import com.app.models.SadRecursoHumano_TO;
+import com.app.models.SadTipoVivienda_TO;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,10 +31,40 @@ public class CargaManualUsuarios extends javax.swing.JInternalFrame {
     /**
      * Creates new form CargaManualUsuarios
      */
-    public CargaManualUsuarios() {
+    public CargaManualUsuarios() throws SQLException {
         initComponents();
 
+        init();
+
     }
+
+    public void init() throws SQLException {
+
+        try {
+            List<SadCiudadDepto_TO> departamentos = new ArrayList<>();
+            List<SadCiudadDepto_TO> ciudades = new ArrayList<>();
+            List<SadEstado_TO> estados = new ArrayList<>();
+            List<SadTipoVivienda_TO> tViviendas = new ArrayList<>();
+            List<SadCargo_TO> cargos = new ArrayList<>();
+
+            CiudadDeptoController ciudadDeptoController = new CiudadDeptoController();
+            EstadoController estadoController = new EstadoController();
+            TipoViviendaController tipoViviendaController = new TipoViviendaController();
+            CargoController cargoController = new CargoController();
+
+            departamentos = ciudadDeptoController.consultarDepartamento();
+            ciudades = ciudadDeptoController.consultarCiudad();
+            estados = estadoController.consultarEstado();
+            tViviendas = tipoViviendaController.consultarTipoVivienda();
+            cargos = cargoController.consultarCargo();
+
+        } catch (Exception ex) {
+            Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    ;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -550,11 +590,11 @@ public class CargaManualUsuarios extends javax.swing.JInternalFrame {
                     tf_telefono.setText("");
 
                 }
-            }catch (Exception ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "El número de Identificación no puede estar vacio");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
