@@ -5,6 +5,8 @@
  */
 package com.app.form;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Gustavo
@@ -16,7 +18,7 @@ public class frmLogin extends javax.swing.JFrame {
      */
     public frmLogin() {
         initComponents();
-        
+
         this.setLocationRelativeTo(null);
     }
 
@@ -108,6 +110,8 @@ public class frmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+
+        JOptionPane.showMessageDialog(null, "No tiene acceso a la Base de Datos");
 //        UserDBController misdatos = new UserDBController();
 //        if(!misdatos.validarUsuario(txtUsuario.getText(),
 //                new String(txtClave.getPassword()))){
@@ -117,13 +121,12 @@ public class frmLogin extends javax.swing.JFrame {
 //            txtUsuario.requestFocusInWindow();
 //            return;
 //        }
-        
+
 //        frmPrincipal miPrincipal = new frmPrincipal();
 //        this.setVisible(false);
 //        miPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //        miPrincipal.setLocationRelativeTo(null);
 //        miPrincipal.setVisible(true);
-        
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
