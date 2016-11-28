@@ -9,6 +9,7 @@ import com.app.controller.UserController;
 import com.app.controller.VacacionesController;
 import com.app.models.SadRecursoHumano_TO;
 import com.app.models.SadVacaciones_TO;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -95,13 +96,13 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Editar", "Periodo", "Fecha Inicio", "fecha Fin", "Tomado"
+                "Periodo", "Fecha Inicio", "fecha Fin", "Tomado"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -288,7 +289,24 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+       
+        try {
+            VacacionesController vacacionesController = null;
+            
+            vacacionesController = new VacacionesController();
+            int tomado = 0;
+            if(jCheckBox1.isSelected()==true){
+                tomado = 1;
+                
+            }
+            
+             int a = jTable1.getSelectedRow();
+            
+            vacacionesController.editarVacaciones(jTextField1.getText(), Integer.parseInt(jTable1.getValueAt(a, 0).toString()), Integer.parseInt(jTextField1.getText().trim()),  jTable1.getValueAt(a, 1).toString(), jTextField4.getText() , jTable1.getValueAt(a, 2).toString(), jTextField5.getText(),  tomado);
+        } catch (Exception ex) {
+            Logger.getLogger(ActualizacionManualVacaciones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
@@ -328,19 +346,17 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
 
             jTable1.setModel(modelo);
 
-            modelo.addColumn("Editar");
             modelo.addColumn("Periodo");
             modelo.addColumn("Fecha Inicio");
             modelo.addColumn("Fecha Fin");
             modelo.addColumn("Tomado");
 
             for (int i = 0; i < vaciones.size(); i++) {
-                Object[] object = new Object[5];
-                object[0] = "";
-                object[1] = vaciones.get(i).getPeriodo();
-                object[2] = vaciones.get(i).getFechaIni();
-                object[3] = vaciones.get(i).getFechaFin();
-                object[4] = vaciones.get(i).getTomado();
+                Object[] object = new Object[4];
+                object[0] = vaciones.get(i).getPeriodo();
+                object[1] = vaciones.get(i).getFechaIni();
+                object[2] = vaciones.get(i).getFechaFin();
+                object[3] = vaciones.get(i).getTomado();
 
                 modelo.addRow(object);
             }
@@ -352,8 +368,9 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
-          DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        SadVacaciones_TO vacacion = new SadVacaciones_TO();
 
         //Sección 2
         int a = jTable1.getSelectedRow();
@@ -365,8 +382,20 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
                     "Debe seleccionar una fila de la tabla");
 
         } else {
-            
-            
+            try {
+                VacacionesController vacacionesController;
+                vacacionesController = new VacacionesController();
+                vacacion = vacacionesController.consultarVacacionesIdependiente(jTextField1.getText().trim(), Integer.parseInt(jTable1.getValueAt(a, 0).toString()), (Date) jTable1.getValueAt(a, 1), (Date) jTable1.getValueAt(a, 2));
+
+                jTextField3.setText(vacacion.getPeriodo() + "");
+                jTextField4.setText(vacacion.getFechaIni().toString());
+                jTextField5.setText(vacacion.getFechaFin().toString());
+                if (vacacion.getTomado() == 1) {
+                    jCheckBox1.setSelected(true);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(ActualizacionManualVacaciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
 
