@@ -5,6 +5,7 @@
  */
 package com.app.models;
 
+import java.sql.Date;
 import jxl.write.DateTime;
 
 /**
@@ -35,7 +36,7 @@ public class SadRecursoHumano_TO {
 
     private String rhBarrio;
 
-    private DateTime rhFchNacimiento;
+    private Date rhFchNacimiento;
 
     private int rhCodDeptoOrigen;
 
@@ -81,7 +82,7 @@ public class SadRecursoHumano_TO {
     public SadRecursoHumano_TO() {
     }
 
-    public SadRecursoHumano_TO(long rhNumIden, int rhCodDeptoIden, int rhCodCiudadIden, DateTime rhFchIngreso, String rhNombres, String rhApellido1, String rhApellido2, int rhCodSexo, int rhCodEstCivil, String rhDireccion, String rhBarrio, DateTime rhFchNacimiento, int rhCodDeptoOrigen, int rhCodCiudadOrigen, int rhTelefono, long rhCelular, int rhCodTipVivienda, int rhEstrato, String rhLibretaMilitar, String rhDistrito, int rhClase, String rhGrupoSang, String rhRH, int rhCodCargo, int rhCodDeptoCargo, int rhCodCiudadCargo, String rhNombreEmergencia, String rhTelEmergencia, int rhCodCcosto, String rhMedsAlergico, long rhCodEstado, String rhCorreo) {
+    public SadRecursoHumano_TO(long rhNumIden, int rhCodDeptoIden, int rhCodCiudadIden, DateTime rhFchIngreso, String rhNombres, String rhApellido1, String rhApellido2, int rhCodSexo, int rhCodEstCivil, String rhDireccion, String rhBarrio, Date rhFchNacimiento, int rhCodDeptoOrigen, int rhCodCiudadOrigen, int rhTelefono, long rhCelular, int rhCodTipVivienda, int rhEstrato, String rhLibretaMilitar, String rhDistrito, int rhClase, String rhGrupoSang, String rhRH, int rhCodCargo, int rhCodDeptoCargo, int rhCodCiudadCargo, String rhNombreEmergencia, String rhTelEmergencia, int rhCodCcosto, String rhMedsAlergico, long rhCodEstado, String rhCorreo) {
         this.rhNumIden = rhNumIden;
         this.rhCodDeptoIden = rhCodDeptoIden;
         this.rhCodCiudadIden = rhCodCiudadIden;
@@ -115,6 +116,32 @@ public class SadRecursoHumano_TO {
         this.rhCodEstado = rhCodEstado;
         this.rhCorreo = rhCorreo;
     }
+
+    public SadRecursoHumano_TO(long rhNumIden, int rhCodDeptoIden, int rhCodCiudadIden, String rhNombres, String rhApellido1, String rhApellido2, int rhCodSexo, int rhCodEstCivil, String rhDireccion, String rhBarrio, Date rhFchNacimiento, int rhCodDeptoOrigen, int rhCodCiudadOrigen, int rhTelefono, long rhCelular, int rhCodTipVivienda, int rhEstrato, String rhGrupoSang, String rhRH, long rhCodEstado, String rhCorreo) {
+        this.rhNumIden = rhNumIden;
+        this.rhCodDeptoIden = rhCodDeptoIden;
+        this.rhCodCiudadIden = rhCodCiudadIden;
+        this.rhNombres = rhNombres;
+        this.rhApellido1 = rhApellido1;
+        this.rhApellido2 = rhApellido2;
+        this.rhCodSexo = rhCodSexo;
+        this.rhCodEstCivil = rhCodEstCivil;
+        this.rhDireccion = rhDireccion;
+        this.rhBarrio = rhBarrio;
+        this.rhFchNacimiento = rhFchNacimiento;
+        this.rhCodDeptoOrigen = rhCodDeptoOrigen;
+        this.rhCodCiudadOrigen = rhCodCiudadOrigen;
+        this.rhTelefono = rhTelefono;
+        this.rhCelular = rhCelular;
+        this.rhCodTipVivienda = rhCodTipVivienda;
+        this.rhEstrato = rhEstrato;
+        this.rhGrupoSang = rhGrupoSang;
+        this.rhRH = rhRH;
+        this.rhCodEstado = rhCodEstado;
+        this.rhCorreo = rhCorreo;
+    }
+    
+    
 
     //Getter and Setters
     public long getRhNumIden() {
@@ -205,11 +232,11 @@ public class SadRecursoHumano_TO {
         this.rhBarrio = rhBarrio;
     }
 
-    public DateTime getRhFchNacimiento() {
+    public Date getRhFchNacimiento() {
         return rhFchNacimiento;
     }
 
-    public void setRhFchNacimiento(DateTime rhFchNacimiento) {
+    public void setRhFchNacimiento(Date rhFchNacimiento) {
         this.rhFchNacimiento = rhFchNacimiento;
     }
 

@@ -6,9 +6,13 @@
 package com.app.controller;
 
 import com.app.conexion.ConexionSQL;
+import com.app.models.SadEstadoCivil_TO;
 import com.app.models.SadRecursoHumano_TO;
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import jxl.write.DateTime;
 
 /**
  *
@@ -28,34 +32,6 @@ public class UserController {
 
         try {
 
-//            String sql = "INSERT INTO `sadrecursohumano` (`rhNumIden`,"
-//                    + " `rhCodDeptoIden`, `rhCodCiudadIden`, `rhFchIngreso`,"
-//                    + " `rhNombres`, `rhApellido1`, `rhApellido2`, "
-//                    + "`rhCodSexo`, `rhCodEstCivil`, `rhDireccion`,"
-//                    + " `rhBarrio`, `rhFchNacimiento`, `rhCodDeptoOrigen`, "
-//                    + "`rhCodCiudadOrigen`, `rhTelefono`, `rhCelular`,"
-//                    + " `rhCodTipVivienda`, `rhEstrato`, `rhLibretaMilitar`, "
-//                    + "`rhDistrito`, `rhClase`, `rhGrupoSang`, `rhRH`, "
-//                    + "`rhCodCargo`, `rhCodDeptoCargo`, `rhCodCiudadCargo`,"
-//                    + " `rhNombreEmergencia`, `rhTelEmergencia`, `rhCodCcosto`, "
-//                    + "`rhMedsAlergico`, `rhImagen`, `rhCodEstado`, `rhCorreo`)"
-//                    + " VALUES ('"+usuario.getRhNumIden()+"', NULL,"
-//                    + " NULL, NULL,"
-//                    + " '"+usuario.getRhNombres()+"', '"+usuario.getRhApellido1()+"', "
-//                    + "'"+usuario.getRhApellido2()+"', NULL, "
-//                    + "NULL, '"+usuario.getRhDireccion()+"',"
-//                    + " '"+usuario.getRhBarrio()+"', NULL,"
-//                    + " NULL, NULL,"
-//                    + " '"+usuario.getRhTelefono()+"', '"+usuario.getRhCelular()+"',"
-//                    + " NULL, NULL,"
-//                    + " NULL, NULL,"
-//                    + " NULL, NULL,"
-//                    + " NULL, NULL,"
-//                    + " NULL, NULL,"
-//                    + " '"+usuario.getRhNombreEmergencia()+"', '"+usuario.getRhTelEmergencia()+"',"
-//                    + " NULL, NULL,"
-//                    + " NULL, '',"
-//                    + " '"+usuario.getRhCorreo()+"');";
             String sql = "INSERT INTO [dbo].[sadRecursoHumano] "
                     + "           ([rhNumIden] "
                     + "           ,[rhCodDeptoIden]"
@@ -116,6 +92,59 @@ public class UserController {
         }
 
         return user;
+
+    }
+
+    public SadRecursoHumano_TO consultarClientesPorCedula(SadRecursoHumano_TO usuario) throws Exception {
+
+        SadRecursoHumano_TO Cliente = new SadRecursoHumano_TO();
+
+        try {
+
+            String sql = "SELECT [rhNumIden] "
+                    + "      ,[rhCodDeptoIden] "
+                    + "      ,[rhCodCiudadIden] "
+                    + "      ,[rhNombres] "
+                    + "      ,[rhApellido1] "
+                    + "      ,[rhApellido2] "
+                    + "      ,[rhCodSexo] "
+                    + "      ,[rhCodEstCivil] "
+                    + "      ,[rhDireccion] "
+                    + "      ,[rhBarrio] "
+                    + "      ,[rhFchNacimiento] "
+                    + "      ,[rhCodDeptoOrigen] "
+                    + "      ,[rhCodCiudadOrigen] "
+                    + "      ,[rhTelefono] "
+                    + "      ,[rhCelular] "
+                    + "      ,[rhCodTipVivienda] "
+                    + "      ,[rhEstrato] "
+                    + "      ,[rhGrupoSang] "
+                    + "      ,[rhRH] "
+                    + "      ,[rhCodEstado] "
+                    + "      ,[rhCorreo] "
+                    + "  FROM [dbo].[sadRecursoHumano] where [rhNumIden]= "+usuario.getRhNumIden()+";";
+
+            System.out.println("sql: " + sql);
+
+             ResultSet rs = null;
+
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                                                                                                                                                                                                                                                                                        
+                Cliente = new SadRecursoHumano_TO(rs.getLong(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getString(10), rs.getDate(11),rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getLong(15), rs.getInt(16), rs.getInt(17), rs.getString(18), rs.getString(19), rs.getLong(20), rs.getString(21));
+
+            }
+
+        } catch (Exception e) {
+
+            throw e;
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return Cliente;
 
     }
 
