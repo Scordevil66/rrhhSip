@@ -7,11 +7,13 @@ package com.app.form;
 
 import com.app.controller.CargoController;
 import com.app.controller.CiudadDeptoController;
+import com.app.controller.EstadoCivilController;
 import com.app.controller.EstadoController;
 import com.app.controller.TipoViviendaController;
 import com.app.controller.UserController;
 import com.app.models.SadCargo_TO;
 import com.app.models.SadCiudadDepto_TO;
+import com.app.models.SadEstadoCivil_TO;
 import com.app.models.SadEstado_TO;
 import com.app.models.SadRecursoHumano_TO;
 import com.app.models.SadTipoVivienda_TO;
@@ -48,52 +50,82 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             List<SadEstado_TO> estados = new ArrayList<>();
             List<SadTipoVivienda_TO> tViviendas = new ArrayList<>();
             List<SadCargo_TO> cargos = new ArrayList<>();
+            List<SadEstadoCivil_TO> estadoCivil = new ArrayList<>();
 
             CiudadDeptoController ciudadDeptoController = new CiudadDeptoController();
             EstadoController estadoController = new EstadoController();
             TipoViviendaController tipoViviendaController = new TipoViviendaController();
             CargoController cargoController = new CargoController();
+            EstadoCivilController estadoCivilController = new EstadoCivilController();
 
             departamentos = ciudadDeptoController.consultarDepartamento();
             ciudades = ciudadDeptoController.consultarCiudad();
             estados = estadoController.consultarEstado();
             tViviendas = tipoViviendaController.consultarTipoVivienda();
             cargos = cargoController.consultarCargo();
+            estadoCivil = estadoCivilController.consultarEstadoCivil();
+
+            jComboBox1.addItem("Seleccione");
+            jComboBox2.addItem("Seleccione");
+            jComboBox3.addItem("Seleccione");
+            jComboBox4.addItem("Seleccione");
+            jComboBox6.addItem("Seleccione");
+            jComboBox9.addItem("Seleccione");
+//            jComboBox10.addItem("Seleccione");
+//            jComboBox11.addItem("Seleccione");
+//            jComboBox12.addItem("Seleccione");
+//            jComboBox13.addItem("Seleccione");
+            jComboBox14.addItem("Seleccione");
+            jComboBox14.addItem("1");
+            jComboBox14.addItem("2");
+            jComboBox14.addItem("3");
+            jComboBox14.addItem("4");
+            jComboBox14.addItem("5");
+            jComboBox14.addItem("6");
+            jComboBox15.addItem("Seleccione");
 
             for (int i = 0; i < departamentos.size(); i++) {
-                jComboBox1.addItem(departamentos.get(i).getCdsCodDepto() + "-" + departamentos.get(i).getCdsDepto());
+                jComboBox1.addItem(departamentos.get(i).getCdsCodDepto() + " - " + departamentos.get(i).getCdsDepto());
             }
 
             for (int i = 0; i < ciudades.size(); i++) {
-                jComboBox2.addItem(ciudades.get(i).getCdsCodCiudad() + "-" + ciudades.get(i).getCdsCiudad());
+                jComboBox2.addItem(ciudades.get(i).getCdsCodCiudad() + " - " + ciudades.get(i).getCdsCiudad());
             }
 
             for (int i = 0; i < departamentos.size(); i++) {
-                jComboBox3.addItem(departamentos.get(i).getCdsCodDepto() + "-" + departamentos.get(i).getCdsDepto());
+                jComboBox3.addItem(departamentos.get(i).getCdsCodDepto() + " - " + departamentos.get(i).getCdsDepto());
             }
 
             for (int i = 0; i < ciudades.size(); i++) {
-                jComboBox4.addItem(ciudades.get(i).getCdsCodCiudad() + "-" + ciudades.get(i).getCdsCiudad());
+                jComboBox4.addItem(ciudades.get(i).getCdsCodCiudad() + " - " + ciudades.get(i).getCdsCiudad());
+            }
+
+            for (int i = 0; i < estadoCivil.size(); i++) {
+                jComboBox6.addItem(estadoCivil.get(i).getSecCodigo() + " - " + estadoCivil.get(i).getSecDescripcion());
             }
 
             for (int i = 0; i < estados.size(); i++) {
-                jComboBox9.addItem(estados.get(i).getEstCodigo() + "-" + estados.get(i).getEstDescripcion());
+                jComboBox9.addItem(estados.get(i).getEstCodigo() + " - " + estados.get(i).getEstDescripcion());
             }
 
-            for (int i = 0; i < cargos.size(); i++) {
-                jComboBox10.addItem(cargos.get(i).getCarCodigo() + "-" + cargos.get(i).getCarDescripcion());
-            }
-
-            for (int i = 0; i < departamentos.size(); i++) {
-                jComboBox12.addItem(departamentos.get(i).getCdsCodDepto() + "-" + departamentos.get(i).getCdsDepto());
-            }
-
-            for (int i = 0; i < ciudades.size(); i++) {
-                jComboBox13.addItem(ciudades.get(i).getCdsCodCiudad() + "-" + ciudades.get(i).getCdsCiudad());
-            }
+//            for (int i = 0; i < cargos.size(); i++) {
+//                jComboBox10.addItem(cargos.get(i).getCarCodigo() + " - " + cargos.get(i).getCarDescripcion());
+//            }
+//
+//            for (int i = 0; i < cargos.size(); i++) {
+//                jComboBox11.addItem(cargos.get(i).getCarCodigo() + " - " + cargos.get(i).getCarDescripcion());
+//            }
+//
+//            for (int i = 0; i < departamentos.size(); i++) {
+//                jComboBox12.addItem(departamentos.get(i).getCdsCodDepto() + " - " + departamentos.get(i).getCdsDepto());
+//            }
+//
+//            for (int i = 0; i < ciudades.size(); i++) {
+//                jComboBox13.addItem(ciudades.get(i).getCdsCodCiudad() + " - " + ciudades.get(i).getCdsCiudad());
+//            }
 
             for (int i = 0; i < tViviendas.size(); i++) {
-                jComboBox15.addItem(tViviendas.get(i).getStvCodigo() + "-" + tViviendas.get(i).getStvDescripion());
+                jComboBox15.addItem(tViviendas.get(i).getStvCodigo() + " - " + tViviendas.get(i).getStvDescripion());
             }
 
         } catch (Exception ex) {
@@ -155,25 +187,9 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
         jLabel21 = new javax.swing.JLabel();
         tf_edad = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
         jComboBox9 = new javax.swing.JComboBox();
-        jComboBox10 = new javax.swing.JComboBox();
-        jComboBox11 = new javax.swing.JComboBox();
-        jComboBox12 = new javax.swing.JComboBox();
-        jComboBox13 = new javax.swing.JComboBox();
         tf_correo = new javax.swing.JTextField();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        tf_nombreApellidoEmergencia = new javax.swing.JTextField();
-        jLabel30 = new javax.swing.JLabel();
-        tf_telefonoEmergencia = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jComboBox14 = new javax.swing.JComboBox();
         jLabel33 = new javax.swing.JLabel();
@@ -230,14 +246,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jRadioButton1.setText("Femenino");
 
         jRadioButton2.setText("Masculino");
@@ -260,52 +268,15 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 
         jRadioButton4.setText("-");
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel21.setText("Edad:");
 
         jLabel8.setText("Estado:");
 
-        jLabel22.setText("Cargo Actual:");
-
-        jLabel23.setText("Dependencia:");
-
-        jLabel24.setText("Depto. Cargo:");
-
-        jLabel25.setText("Ciudad Cargo:");
-
         jLabel26.setText("Correo Institucional:");
-
-        jLabel27.setText("Alérgico a algún Medicamento:");
-
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jRadioButton5.setText("SI");
-
-        jRadioButton6.setText("NO");
-
-        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel28.setText("Contacto en caso de Emergencia");
-
-        jLabel29.setText("Nombres y Apellidos: ");
-
-        jLabel30.setText("Teléfono(s):");
 
         jButton2.setText("Buscar");
 
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6" }));
-
         jLabel33.setText("Estrato:");
-
-        jComboBox15.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -377,51 +348,30 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jRadioButton4))
                                     .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 68, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(96, 96, 96))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel23)
-                            .addComponent(jLabel24)
-                            .addComponent(jLabel25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel27)
-                                .addGap(29, 29, 29)
-                                .addComponent(jRadioButton5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRadioButton6))
-                            .addComponent(jLabel28)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel29)
-                                    .addComponent(jLabel30))
+                                .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_nombreApellidoEmergencia)
-                                    .addComponent(tf_telefonoEmergencia)))
+                                .addComponent(tf_correo, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel22)
                                     .addComponent(jLabel8)
-                                    .addComponent(jLabel26)
                                     .addComponent(jLabel33)
                                     .addComponent(jLabel18))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_correo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGap(20, 20, 20)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jComboBox9, javax.swing.GroupLayout.Alignment.TRAILING, 0, 255, Short.MAX_VALUE)
-                                    .addComponent(jComboBox10, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox11, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox12, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox13, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox14, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox15, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(96, 96, 96))))
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -489,7 +439,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
                             .addComponent(tf_barrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(tf_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -505,51 +455,21 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel23)
-                            .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel24)
-                            .addComponent(jComboBox12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel25)
-                            .addComponent(jComboBox13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26)
                             .addComponent(tf_correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel27)
-                            .addComponent(jRadioButton5)
-                            .addComponent(jRadioButton6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel28)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel29)
-                            .addComponent(tf_nombreApellidoEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel30)
-                            .addComponent(tf_telefonoEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 10, Short.MAX_VALUE)
+                        .addGap(0, 25, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
                             .addComponent(tf_celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -561,10 +481,10 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel31)
-                .addContainerGap(573, Short.MAX_VALUE))
+                .addContainerGap(579, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -606,8 +526,59 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                 srrhh.setRhCelular(0);
             }
             srrhh.setRhCorreo(tf_correo.getText());
-            srrhh.setRhNombreEmergencia(tf_nombreApellidoEmergencia.getText());
-            srrhh.setRhTelEmergencia(tf_telefonoEmergencia.getText());
+//            srrhh.setRhNombreEmergencia(tf_nombreApellidoEmergencia.getText());
+//            srrhh.setRhTelEmergencia(tf_telefonoEmergencia.getText());
+
+            String depIden = (String) jComboBox1.getSelectedItem();
+            String[] depIdenA = depIden.split(" - ");
+            int codDep = Integer.parseInt(depIdenA[0]);
+            srrhh.setRhCodDeptoIden(codDep);
+
+            String ciuIden = (String) jComboBox2.getSelectedItem();
+            String[] ciuIdenA = ciuIden.split(" - ");
+            int codCiu = Integer.parseInt(ciuIdenA[0]);
+            srrhh.setRhCodCiudadIden(codCiu);
+
+            String depOri = (String) jComboBox3.getSelectedItem();
+            String[] depOriA = depOri.split(" - ");
+            int codDepOri = Integer.parseInt(depOriA[0]);
+            srrhh.setRhCodDeptoOrigen(codDepOri);
+
+            String ciuOri = (String) jComboBox4.getSelectedItem();
+            String[] ciuOriA = ciuOri.split(" - ");
+            int codCiuOri = Integer.parseInt(ciuOriA[0]);
+            srrhh.setRhCodCiudadOrigen(codCiuOri);
+
+            String estadoCivil = (String) jComboBox6.getSelectedItem();
+            String[] estadoCivilA = estadoCivil.split(" - ");
+            int codEstadoCivil = Integer.parseInt(estadoCivilA[0]);
+            srrhh.setRhCodEstCivil(codEstadoCivil);
+
+            String tipoVivienda = (String) jComboBox15.getSelectedItem();
+            String[] tipoViviendaA = tipoVivienda.split(" - ");
+            int codTipoViviendaA = Integer.parseInt(tipoViviendaA[0]);
+            srrhh.setRhCodTipVivienda(codTipoViviendaA);
+
+//            int codEstrato = 0;
+//            if (!(jComboBox14.getSelectedItem().toString().equals("Seleccione"))) {
+              int  codEstrato = Integer.parseInt(jComboBox14.getSelectedItem().toString());
+//            }
+            srrhh.setRhEstrato(codEstrato);
+
+            String estado = (String) jComboBox9.getSelectedItem();
+            String[] estadoA = estado.split(" - ");
+            int codEstadoA = Integer.parseInt(estadoA[0]);
+            srrhh.setRhCodEstado(codEstadoA);
+
+//            String cargo = (String) jComboBox10.getSelectedItem();
+//            String[] cargoA = cargo.split(" - ");
+//            int codCargoA = Integer.parseInt(cargoA[0]);
+//            srrhh.setRhCodCargo(codCargoA);
+//
+//            String dependecia = (String) jComboBox11.getSelectedItem();
+//            String[] dependeciaA = dependecia.split(" - ");
+//            int codDependenciaA = Integer.parseInt(dependeciaA[0]);
+//            srrhh.setrh(codDependenciaA);
 
             //      srrhh.set
             try {
@@ -623,8 +594,8 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                     tf_barrio.setText("");
                     tf_celular.setText("");
                     tf_correo.setText("");
-                    tf_nombreApellidoEmergencia.setText("");
-                    tf_telefonoEmergencia.setText("");
+//                    tf_nombreApellidoEmergencia.setText("");
+//                    tf_telefonoEmergencia.setText("");
                     tf_telefono.setText("");
 
                 }
@@ -654,10 +625,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox10;
-    private javax.swing.JComboBox jComboBox11;
-    private javax.swing.JComboBox jComboBox12;
-    private javax.swing.JComboBox jComboBox13;
     private javax.swing.JComboBox jComboBox14;
     private javax.swing.JComboBox jComboBox15;
     private javax.swing.JComboBox jComboBox2;
@@ -679,16 +646,8 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
@@ -702,8 +661,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JTextField tf_apellido1;
     private javax.swing.JTextField tf_apellido2;
     private javax.swing.JTextField tf_barrio;
@@ -713,9 +670,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tf_direccion;
     private javax.swing.JTextField tf_edad;
     private javax.swing.JTextField tf_fechaNac;
-    private javax.swing.JTextField tf_nombreApellidoEmergencia;
     private javax.swing.JTextField tf_nombres;
     private javax.swing.JTextField tf_telefono;
-    private javax.swing.JTextField tf_telefonoEmergencia;
     // End of variables declaration//GEN-END:variables
 }

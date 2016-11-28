@@ -6,8 +6,8 @@
 package com.app.controller;
 
 import com.app.conexion.ConexionSQL;
-import com.app.models.SadCargo_TO;
-import com.app.models.SadEstado_TO;
+import com.app.models.SadCiudadDepto_TO;
+import com.app.models.SadEstadoCivil_TO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,33 +18,28 @@ import java.util.List;
  *
  * @author user
  */
-public class CargoController {
+public class EstadoCivilController {
 
     Statement st;
 
-    public CargoController() throws SQLException {
-        
+    public List<SadEstadoCivil_TO> consultarEstadoCivil() throws Exception {
+
         this.st = ConexionSQL.conexion();
-    }
 
-    public List<SadCargo_TO> consultarCargo() throws Exception {
-        
-         this.st = ConexionSQL.conexion();
-
-        List<SadCargo_TO> cargos = new ArrayList<>();
+        List<SadEstadoCivil_TO> Estados = new ArrayList<>();
 
         try {
 
-            String sql = "SELECT [carCodigo] "
-                    + "      ,[carDescripcion] "
-                    + "  FROM [dbo].[sadCargo];";
+            String sql = "SELECT [secCodigo] "
+                    + "      ,[secDescripcion] "
+                    + "  FROM [dbo].[sadEstadoCivil];";
 
             ResultSet rs = null;
 
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                cargos.add(new SadCargo_TO(rs.getInt(1), rs.getString(2)));
+                Estados.add(new SadEstadoCivil_TO(rs.getInt(1), rs.getString(2)));
 
             }
 
@@ -56,7 +51,7 @@ public class CargoController {
             ConexionSQL.CerrarConexion();
         }
 
-        return cargos;
+        return Estados;
 
     }
 

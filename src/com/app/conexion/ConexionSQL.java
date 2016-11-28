@@ -14,8 +14,6 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
 /**
  *
  * @author ContabilidadPC
@@ -23,7 +21,7 @@ import java.util.logging.Logger;
 public class ConexionSQL {
 
     //static String clave = "yU7eywfXILoZjtaD";
-    static String clave = "";
+    static String clave = "qwerty";
     static Statement ST = null;
     static Connection cn = null;
     static String user = "";
@@ -35,7 +33,7 @@ public class ConexionSQL {
 
             try {
                 // CLASE USADA PARA EL DRIVER
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
             } catch (InstantiationException ex) {
                 Logger.getLogger(ConexionSQL.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IllegalAccessException ex) {
@@ -44,7 +42,7 @@ public class ConexionSQL {
             // RUTA DE LA BASE DE DATOS
             //  149.56.93.6
             //  String url = "jdbc:mysql://149.56.93.6:3306/smsrenta_actualizada";
-            String url = "jdbc:mysql://localhost:3306/sadrbm";
+            String url = "jdbc:sqlserver://192.168.0.21:1433;databaseName=SadRBM";
             // CONECCION A LA BASE DE DATOS
             cn = DriverManager.getConnection(url, "root", clave);
             // TRAE LOS DATOS
@@ -68,9 +66,15 @@ public class ConexionSQL {
 
     public static Connection CerrarConexion() throws SQLException {
 
-        cn.close();
-        cn = null;
-        return cn;
+        try {
+            if (cn != null) {
+                cn.close();
+                cn = null;
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        }
+        return null;
 
     }
 

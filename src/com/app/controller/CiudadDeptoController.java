@@ -33,7 +33,7 @@ public class CiudadDeptoController {
 
         try {
 
-            String sql = "SELECT [cdsCodDepto]"
+            String sql = "SELECT DISTINCT [cdsCodDepto]"
                     + "      ,[cdsDepto]"
                     + "  FROM [dbo].[sadCiudadDepto];";
 
@@ -64,7 +64,7 @@ public class CiudadDeptoController {
 
         try {
 
-            String sql = "SELECT [cdsCodDepto]"
+            String sql = "SELECT DISTINCT [cdsCodDepto]"
                     + "      ,[cdsCodCiudad]"
                     + "      ,[cdsCiudad]"
                     + "  FROM [dbo].[sadCiudadDepto];";

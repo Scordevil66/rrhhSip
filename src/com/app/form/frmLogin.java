@@ -111,7 +111,7 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
-        JOptionPane.showMessageDialog(null, "No tiene acceso a la Base de Datos");
+//        JOptionPane.showMessageDialog(null, "No tiene acceso a la Base de Datos");
 //        UserDBController misdatos = new UserDBController();
 //        if(!misdatos.validarUsuario(txtUsuario.getText(),
 //                new String(txtClave.getPassword()))){
@@ -122,11 +122,11 @@ public class frmLogin extends javax.swing.JFrame {
 //            return;
 //        }
 
-//        frmPrincipal miPrincipal = new frmPrincipal();
-//        this.setVisible(false);
-//        miPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        miPrincipal.setLocationRelativeTo(null);
-//        miPrincipal.setVisible(true);
+        Menu miPrincipal = new Menu();
+        this.setVisible(false);
+        miPrincipal.setExtendedState(this.MAXIMIZED_BOTH);
+        miPrincipal.setLocationRelativeTo(null);
+        miPrincipal.setVisible(true);
 
     }//GEN-LAST:event_btnAceptarActionPerformed
 
