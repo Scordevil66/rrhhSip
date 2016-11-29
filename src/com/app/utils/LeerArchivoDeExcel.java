@@ -260,7 +260,9 @@ public class LeerArchivoDeExcel {
 
                     SadTipoVivienda_TO codTipoVivienda = tipoViviendaController.consultarTipoViviendaNombre(tipoVivienda);
                     srrhh.setRhCodTipVivienda(codTipoVivienda.getStvCodigo());
-
+                    
+                    srrhh.setRhFchNacimientoString(fechaNacimiento);
+                    
                     try {
                         int a = userController.registrarClientes(srrhh);
 

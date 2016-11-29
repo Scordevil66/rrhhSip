@@ -30,6 +30,11 @@ public class UserController {
 
         int user = 0;
 
+        String[] fechaN = usuario.getRhFchNacimientoString().split("/");
+        String diaN = fechaN[0];
+        String mesN = fechaN[1];
+        String anioN = fechaN[2];
+
         try {
 
             String sql = "INSERT INTO [dbo].[sadRecursoHumano] "
@@ -43,7 +48,7 @@ public class UserController {
                     + "           ,[rhCodEstCivil]"
                     + "           ,[rhDireccion]"
                     + "           ,[rhBarrio]"
-                    //                    + "           ,[rhFchNacimiento]"
+                    + "           ,[rhFchNacimiento]"
                     + "           ,[rhCodDeptoOrigen]"
                     + "           ,[rhCodCiudadOrigen]"
                     + "           ,[rhTelefono]"
@@ -65,7 +70,7 @@ public class UserController {
                     + "           ," + usuario.getRhCodEstCivil()
                     + "           ,'" + usuario.getRhDireccion()
                     + "'           ,'" + usuario.getRhBarrio()
-//                    + "'           ,<rhFchNacimiento, datetime,>"
+                    + "'           ,CONVERT(VARCHAR, '" + mesN+"/"+diaN+"/" +anioN +"', 103)"
                     + "'           ," + usuario.getRhCodDeptoOrigen()
                     + "           ," + usuario.getRhCodCiudadOrigen()
                     + "           ," + usuario.getRhTelefono()
@@ -73,7 +78,7 @@ public class UserController {
                     + "           ," + usuario.getRhCodTipVivienda()
                     + "           ," + usuario.getRhEstrato()
                     + "           ,'" + usuario.getRhGrupoSang()
-                    + "'           ,'"+ usuario.getRhRH()
+                    + "'           ,'" + usuario.getRhRH()
                     + "'           ," + usuario.getRhCodEstado()
                     + "           ,'" + usuario.getRhCorreo() + "');";
 
@@ -122,17 +127,17 @@ public class UserController {
                     + "      ,[rhRH] "
                     + "      ,[rhCodEstado] "
                     + "      ,[rhCorreo] "
-                    + "  FROM [dbo].[sadRecursoHumano] where [rhNumIden]= "+usuario.getRhNumIden()+";";
+                    + "  FROM [dbo].[sadRecursoHumano] where [rhNumIden]= " + usuario.getRhNumIden() + ";";
 
             System.out.println("sql: " + sql);
 
-             ResultSet rs = null;
+            ResultSet rs = null;
 
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                                                                                                                                                                                                                                                                                        
-                Cliente = new SadRecursoHumano_TO(rs.getLong(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getString(10), rs.getDate(11),rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getLong(15), rs.getInt(16), rs.getInt(17), rs.getString(18), rs.getString(19), rs.getLong(20), rs.getString(21));
+
+                Cliente = new SadRecursoHumano_TO(rs.getLong(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8), rs.getString(9), rs.getString(10), rs.getDate(11), rs.getInt(12), rs.getInt(13), rs.getInt(14), rs.getLong(15), rs.getInt(16), rs.getInt(17), rs.getString(18), rs.getString(19), rs.getLong(20), rs.getString(21));
 
             }
 

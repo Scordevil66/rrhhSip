@@ -38,6 +38,8 @@ public class SadRecursoHumano_TO {
 
     private Date rhFchNacimiento;
 
+    private String rhFchNacimientoString;
+
     private int rhCodDeptoOrigen;
 
     private int rhCodCiudadOrigen;
@@ -140,8 +142,6 @@ public class SadRecursoHumano_TO {
         this.rhCodEstado = rhCodEstado;
         this.rhCorreo = rhCorreo;
     }
-    
-    
 
     //Getter and Setters
     public long getRhNumIden() {
@@ -398,6 +398,14 @@ public class SadRecursoHumano_TO {
 
     public void setRhCorreo(String rhCorreo) {
         this.rhCorreo = rhCorreo;
+    }
+
+    public String getRhFchNacimientoString() {
+        return rhFchNacimientoString;
+    }
+
+    public void setRhFchNacimientoString(String rhFchNacimientoString) {
+        this.rhFchNacimientoString = rhFchNacimientoString;
     }
 
     @Override
