@@ -89,7 +89,7 @@ public class LeerArchivoDeExcel {
 
                     vacacionesController = new VacacionesController();
 
-                    for (int fila = 1; fila < sheet.getRows(); fila++) { //recorremos las filas
+                    for (int fila = 1; fila < (sheet.getRows()-1); fila++) { //recorremos las filas
 
                         accion = sheet.getCell(0, fila).getContents(); //setear la celda leida a nombre
                         cedula = sheet.getCell(1, fila).getContents();
@@ -118,6 +118,7 @@ public class LeerArchivoDeExcel {
                         temp = cedula;
 
                     }
+                     JOptionPane.showMessageDialog(null, "Registros realizados Satisfactoriamente");
                 }
 
             } else {

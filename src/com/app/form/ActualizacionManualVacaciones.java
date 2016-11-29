@@ -315,7 +315,7 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
 
             JOptionPane.showMessageDialog(null,
                     "Modificación Satisfactoria");
-            
+
             List<SadVacaciones_TO> vaciones = vacacionesController.consultarVacaciones(jTextField1.getText().trim());
 
             DefaultTableModel modelo;
@@ -350,69 +350,80 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
 
-        try {
-
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField5.setText("");
-            jCheckBox1.setSelected(false);
-
-            SadRecursoHumano_TO srrhh = new SadRecursoHumano_TO();
-            SadRecursoHumano_TO srrhh2 = new SadRecursoHumano_TO();
-            List<SadVacaciones_TO> vaciones = new ArrayList<>();
-
-            UserController userController = null;
-            VacacionesController vacacionesController = null;
-            EstadoController estadoController = null;
-            CargoController cargoController = null;
+        if (!(jTextField1.getText().equals(""))) {
             try {
-                userController = new UserController();
-                vacacionesController = new VacacionesController();
-                estadoController = new EstadoController();
-                cargoController = new CargoController();
-            } catch (SQLException ex) {
-                Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+
+                jTextField3.setText("");
+                jTextField4.setText("");
+                jTextField5.setText("");
+                jCheckBox1.setSelected(false);
+
+                SadRecursoHumano_TO srrhh = new SadRecursoHumano_TO();
+                SadRecursoHumano_TO srrhh2 = new SadRecursoHumano_TO();
+                List<SadVacaciones_TO> vaciones = new ArrayList<>();
+
+                UserController userController = null;
+                VacacionesController vacacionesController = null;
+                EstadoController estadoController = null;
+                CargoController cargoController = null;
+                try {
+                    userController = new UserController();
+                    vacacionesController = new VacacionesController();
+                    estadoController = new EstadoController();
+                    cargoController = new CargoController();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                srrhh.setRhNumIden(Long.parseLong(jTextField1.getText().trim()));
+
+                srrhh2 = userController.consultarClientesPorCedula(srrhh);
+
+                if (srrhh2.getRhNumIden() > 0) {
+
+                    vaciones = new ArrayList<>();
+
+                    vaciones = vacacionesController.consultarVacaciones(jTextField1.getText().trim());
+
+                    SadEstado_TO estado = estadoController.consultarEstadoId(srrhh2.getRhCodEstado());
+
+                    SadCargo_TO cargo = cargoController.consultarCargoId(srrhh2.getRhCodCargo());
+
+                    jTextField2.setText(srrhh2.getRhNombres() + " " + srrhh2.getRhApellido1());
+                    jTextField6.setText(estado.getEstDescripcion());
+                    jTextField8.setText(cargo.getCarDescripcion());
+
+                    ///Llenamos la tabla
+                    DefaultTableModel modelo;
+                    modelo = new DefaultTableModel();
+
+                    jTable1.setModel(modelo);
+
+                    modelo.addColumn("Periodo");
+                    modelo.addColumn("Fecha Inicio");
+                    modelo.addColumn("Fecha Fin");
+                    modelo.addColumn("Tomado");
+
+                    for (int i = 0; i < vaciones.size(); i++) {
+                        Object[] object = new Object[4];
+                        object[0] = vaciones.get(i).getPeriodo();
+                        object[1] = vaciones.get(i).getFechaIni();
+                        object[2] = vaciones.get(i).getFechaFin();
+                        object[3] = vaciones.get(i).getTomado();
+
+                        modelo.addRow(object);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Usuario no Existente");
+                }
+
+            } catch (Exception ex) {
+                Logger.getLogger(ActualizacionManualVacaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            srrhh.setRhNumIden(Long.parseLong(jTextField1.getText().trim()));
-
-            vaciones = new ArrayList<>();
-
-            vaciones = vacacionesController.consultarVacaciones(jTextField1.getText().trim());
-
-            srrhh2 = userController.consultarClientesPorCedula(srrhh);
-
-            SadEstado_TO estado = estadoController.consultarEstadoId(srrhh2.getRhCodEstado());
-
-            SadCargo_TO cargo = cargoController.consultarCargoId(srrhh2.getRhCodCargo());
-
-            jTextField2.setText(srrhh2.getRhNombres() + " " + srrhh2.getRhApellido1());
-            jTextField6.setText(estado.getEstDescripcion());
-            jTextField8.setText(cargo.getCarDescripcion());
-
-            ///Llenamos la tabla
-            DefaultTableModel modelo;
-            modelo = new DefaultTableModel();
-
-            jTable1.setModel(modelo);
-
-            modelo.addColumn("Periodo");
-            modelo.addColumn("Fecha Inicio");
-            modelo.addColumn("Fecha Fin");
-            modelo.addColumn("Tomado");
-
-            for (int i = 0; i < vaciones.size(); i++) {
-                Object[] object = new Object[4];
-                object[0] = vaciones.get(i).getPeriodo();
-                object[1] = vaciones.get(i).getFechaIni();
-                object[2] = vaciones.get(i).getFechaFin();
-                object[3] = vaciones.get(i).getTomado();
-
-                modelo.addRow(object);
-            }
-
-        } catch (Exception ex) {
-            Logger.getLogger(ActualizacionManualVacaciones.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Debe escribir una identificación");
         }
 
     }//GEN-LAST:event_jButtonBuscarActionPerformed
