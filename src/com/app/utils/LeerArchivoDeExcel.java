@@ -82,21 +82,13 @@ public class LeerArchivoDeExcel {
                     && equals5 == true) {
 
                 if (sheet.getRows() > 0) {
-                    
+
                     String temp = "";
                     int tomado = 0;
 
                     vacacionesController = new VacacionesController();
 
                     for (int fila = 1; fila < sheet.getRows(); fila++) { //recorremos las filas
-                        
-                        
-                        if(!(temp.equals(cedula))){
-                            
-                            vacacionesController.eliminarVacaciones(cedula);
-                             
-                        }
-                        
 
                         accion = sheet.getCell(0, fila).getContents(); //setear la celda leida a nombre
                         cedula = sheet.getCell(1, fila).getContents();
@@ -104,8 +96,16 @@ public class LeerArchivoDeExcel {
                         fichaFinal = sheet.getCell(3, fila).getContents();
                         diasPendientes = sheet.getCell(4, fila).getContents();
 
+                        if (!(temp.equals(cedula))) {
+
+                            vacacionesController.eliminarVacaciones(cedula);
+
+                        }
                         
-                        if (Integer.parseInt(diasPendientes) > 0) {
+                        String[] dias = diasPendientes.split(",");
+                        int dia = Integer.parseInt(dias[0]);
+
+                        if (dia > 0) {
                             tomado = 1;
                         }
                         //Modificaciones
@@ -113,9 +113,7 @@ public class LeerArchivoDeExcel {
                         vacacionesController.insertarVacaciones(cedula, 0, fechaInicial, fichaFinal, tomado);
 
                         temp = cedula;
-                        
-                       
-                        
+
                     }
                 }
 

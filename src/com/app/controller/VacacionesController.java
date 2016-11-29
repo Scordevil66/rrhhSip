@@ -162,9 +162,7 @@ public class VacacionesController {
                     + "           ,'" + fechaFin + "'"
                     + "           ," + tomado + ") ;";
 
-            ResultSet rs = null;
-
-            st.execute(sql);
+            st.executeQuery(sql);
 
         } catch (SQLException e) {
 
