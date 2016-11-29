@@ -150,11 +150,11 @@ public class VacacionesController {
 
         try {
 
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-            Date date = (Date) formatter.parse(fechaIni);
+            java.util.Date date = formatter.parse(fechaIni);
 
-            Date date2 = (Date) formatter.parse(fechaFin);
+            java.util.Date date2 = formatter.parse(fechaFin);
 
 
             String sql = "INSERT INTO [dbo].[sadVacaciones] "
