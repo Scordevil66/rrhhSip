@@ -150,6 +150,15 @@ public class VacacionesController {
 
         try {
 
+            String[] fechaI = fechaIni.split("/");
+            String diaI = fechaI[0];
+            String mesI = fechaI[1];
+            String anioI = fechaI[2];
+
+            String[] fechaF = fechaFin.split("/");
+            String diaF = fechaF[0];
+            String mesF = fechaF[1];
+            String anioF = fechaF[2];
 
             String sql = "INSERT INTO [dbo].[sadVacaciones] "
                     + "           ([Cedula] "
@@ -160,11 +169,11 @@ public class VacacionesController {
                     + "     VALUES "
                     + "           ('" + cedula + "'"
                     + "           ," + periodo
-                    + "           ,CONVERT(VARCHAR, '"+fechaIni+"', 103)"
-                    + "           ,CONVERT(VARCHAR, '"+fechaFin+"', 103)"
+                    + "           ,CONVERT(VARCHAR, '" + mesI+"/"+diaI+"/" +anioI +"', 103)"
+                    + "           ,CONVERT(VARCHAR, '" + mesF+"/"+diaF+"/" +anioF +"', 103)"
                     + "           ," + tomado + ") ;";
 
-            System.out.println(sql+"--------------------------");
+            System.out.println(sql + "--------------------------");
             st.execute(sql);
 
         } catch (SQLException e) {
