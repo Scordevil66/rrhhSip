@@ -128,13 +128,8 @@ public class VacacionesController {
 
         try {
 
-            String sql = "    DELETE FROM[ "
-                    + "    dbo "
-                    + "    ].[sadVacaciones "
-                    + "    ] "
+            String sql = "  DELETE FROM[dbo].[sadVacaciones] "
                     + "   where [Cedula] = '" + cedula + "'  ;";
-
-            ResultSet rs = null;
 
             st.execute(sql);
 
