@@ -72,12 +72,12 @@ public class LeerArchivoDeExcel {
                 equals1 = sheet.getCell(0, fil).getContents().equals("ACCION");
                 equals2 = sheet.getCell(1, fil).getContents().equals("Cedula");
                 equals3 = sheet.getCell(2, fil).getContents().equals("Fecha Inicial Periodo");
-//                equals4 = sheet.getCell(3, fil).getContents().equals("Fecha Final Periodo");
+                equals4 = sheet.getCell(3, fil).getContents().equals("Fecha Final Periodo");
                 equals5 = sheet.getCell(4, fil).getContents().equals("Días Vacaciones Pendientes");
 
             }
 
-            if (equals1 == true && equals2 == true && equals3 == true //&& equals4 == true
+            if (equals1 == true && equals2 == true && equals3 == true && equals4 == true
                     && equals5 == true) {
 
                 for (int fila = 1; fila < sheet.getRows(); fila++) { //recorremos las filas
