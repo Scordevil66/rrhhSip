@@ -123,7 +123,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 //            for (int i = 0; i < ciudades.size(); i++) {
 //                jComboBox13.addItem(ciudades.get(i).getCdsCodCiudad() + " - " + ciudades.get(i).getCdsCiudad());
 //            }
-
             for (int i = 0; i < tViviendas.size(); i++) {
                 jComboBox15.addItem(tViviendas.get(i).getStvCodigo() + " - " + tViviendas.get(i).getStvDescripion());
             }
@@ -145,11 +144,15 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupSexo = new javax.swing.ButtonGroup();
+        buttonGroupRh = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jRadioButtonFemenino = new javax.swing.JRadioButton();
+        jRadioButtonMasculino = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -173,12 +176,10 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
         tf_fechaNac = new javax.swing.JTextField();
         jComboBox3 = new javax.swing.JComboBox();
         jComboBox4 = new javax.swing.JComboBox();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
         jComboBox5 = new javax.swing.JComboBox();
         jLabel20 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButtonPositivo = new javax.swing.JRadioButton();
+        jRadioButtonNegativo = new javax.swing.JRadioButton();
         jComboBox6 = new javax.swing.JComboBox();
         tf_direccion = new javax.swing.JTextField();
         tf_barrio = new javax.swing.JTextField();
@@ -211,6 +212,17 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
         jLabel2.setText("Cédula de Ciudadania: ");
 
         jLabel3.setText("Depto. Expedición: ");
+
+        buttonGroupSexo.add(jRadioButtonFemenino);
+        jRadioButtonFemenino.setText("Femenino");
+
+        buttonGroupSexo.add(jRadioButtonMasculino);
+        jRadioButtonMasculino.setText("Masculino");
+        jRadioButtonMasculino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMasculinoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Ciudad Expedición:");
 
@@ -246,10 +258,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
-        jRadioButton1.setText("Femenino");
-
-        jRadioButton2.setText("Masculino");
-
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A", "B", "AB", "O" }));
         jComboBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,14 +267,16 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 
         jLabel20.setText("RH");
 
-        jRadioButton3.setText("+");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroupRh.add(jRadioButtonPositivo);
+        jRadioButtonPositivo.setText("+");
+        jRadioButtonPositivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                jRadioButtonPositivoActionPerformed(evt);
             }
         });
 
-        jRadioButton4.setText("-");
+        buttonGroupRh.add(jRadioButtonNegativo);
+        jRadioButtonNegativo.setText("-");
 
         jLabel21.setText("Edad:");
 
@@ -337,17 +347,17 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                                 .addComponent(jButton2))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jRadioButtonFemenino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel20)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton3)
+                                        .addComponent(jRadioButtonPositivo)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton4))
-                                    .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jRadioButtonNegativo))
+                                    .addComponent(jRadioButtonMasculino, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 68, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -418,14 +428,14 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2))
+                            .addComponent(jRadioButtonFemenino)
+                            .addComponent(jRadioButtonMasculino))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton4)
+                            .addComponent(jRadioButtonPositivo)
+                            .addComponent(jRadioButtonNegativo)
                             .addComponent(jLabel20))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -465,11 +475,10 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                         .addGap(0, 25, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel17)
                             .addComponent(tf_celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                        .addContainerGap(28, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -504,6 +513,9 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         SadRecursoHumano_TO srrhh = new SadRecursoHumano_TO();
+
+        int sexo = 0;
+        String rh = "";
 
         UserController userController = null;
         try {
@@ -561,7 +573,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 
 //            int codEstrato = 0;
 //            if (!(jComboBox14.getSelectedItem().toString().equals("Seleccione"))) {
-              int  codEstrato = Integer.parseInt(jComboBox14.getSelectedItem().toString());
+            int codEstrato = Integer.parseInt(jComboBox14.getSelectedItem().toString());
 //            }
             srrhh.setRhEstrato(codEstrato);
 
@@ -569,6 +581,22 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             String[] estadoA = estado.split(" - ");
             int codEstadoA = Integer.parseInt(estadoA[0]);
             srrhh.setRhCodEstado(codEstadoA);
+
+            if (jRadioButtonFemenino.isSelected() == true) {
+                sexo = 2;
+            } else if (jRadioButtonMasculino.isSelected() == true) {
+                sexo = 1;
+            }
+            srrhh.setRhCodSexo(sexo);
+
+            if (jRadioButtonPositivo.isSelected() == true) {
+                rh = "+";
+            } else if (jRadioButtonNegativo.isSelected() == true) {
+                rh = "-";
+            }
+            srrhh.setRhRH(rh);
+            
+            srrhh.setRhGrupoSang(jComboBox5.getSelectedItem().toString().trim());
 
 //            String cargo = (String) jComboBox10.getSelectedItem();
 //            String[] cargoA = cargo.split(" - ");
@@ -579,7 +607,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 //            String[] dependeciaA = dependecia.split(" - ");
 //            int codDependenciaA = Integer.parseInt(dependeciaA[0]);
 //            srrhh.setrh(codDependenciaA);
-
             //      srrhh.set
             try {
                 int valor = userController.registrarClientes(srrhh);
@@ -597,6 +624,17 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 //                    tf_nombreApellidoEmergencia.setText("");
 //                    tf_telefonoEmergencia.setText("");
                     tf_telefono.setText("");
+                    
+                    jComboBox1.setSelectedIndex(0);
+                    jComboBox2.setSelectedIndex(0);
+                    jComboBox3.setSelectedIndex(0);
+                    jComboBox4.setSelectedIndex(0);
+                    jComboBox5.setSelectedIndex(0);
+                    jComboBox6.setSelectedIndex(0);
+                    jComboBox9.setSelectedIndex(0);
+                    jComboBox14.setSelectedIndex(0);
+                    jComboBox15.setSelectedIndex(0);                    
+                            
 
                 }
             } catch (Exception ex) {
@@ -612,16 +650,22 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_cedulaActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void jRadioButtonPositivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPositivoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_jRadioButtonPositivoActionPerformed
 
     private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox5ActionPerformed
 
+    private void jRadioButtonMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMasculinoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButtonMasculinoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroupRh;
+    private javax.swing.ButtonGroup buttonGroupSexo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox jComboBox1;
@@ -657,10 +701,10 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButtonFemenino;
+    private javax.swing.JRadioButton jRadioButtonMasculino;
+    private javax.swing.JRadioButton jRadioButtonNegativo;
+    private javax.swing.JRadioButton jRadioButtonPositivo;
     private javax.swing.JTextField tf_apellido1;
     private javax.swing.JTextField tf_apellido2;
     private javax.swing.JTextField tf_barrio;

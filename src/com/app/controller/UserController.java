@@ -39,7 +39,7 @@ public class UserController {
                     + "           ,[rhNombres]"
                     + "           ,[rhApellido1]"
                     + "           ,[rhApellido2]"
-                    //                    + "           ,[rhCodSexo]"
+                    + "           ,[rhCodSexo]"
                     + "           ,[rhCodEstCivil]"
                     + "           ,[rhDireccion]"
                     + "           ,[rhBarrio]"
@@ -50,8 +50,8 @@ public class UserController {
                     + "           ,[rhCelular]"
                     + "           ,[rhCodTipVivienda]"
                     + "           ,[rhEstrato]"
-                    //                    + "           ,[rhGrupoSang]"
-                    //                    + "           ,[rhRH]"
+                    + "           ,[rhGrupoSang]"
+                    + "           ,[rhRH]"
                     + "           ,[rhCodEstado]"
                     + "           ,[rhCorreo])"
                     + "     VALUES "
@@ -61,20 +61,20 @@ public class UserController {
                     + "           ,'" + usuario.getRhNombres()
                     + "'           ,'" + usuario.getRhApellido1()
                     + "'           ,'" + usuario.getRhApellido2()
-                    //                    + "           ,<rhCodSexo, tinyint,>"
-                    + "'           ," + usuario.getRhCodEstCivil()
+                    + "'           ," + usuario.getRhCodSexo()
+                    + "           ," + usuario.getRhCodEstCivil()
                     + "           ,'" + usuario.getRhDireccion()
                     + "'           ,'" + usuario.getRhBarrio()
-                    //                    + "           ,<rhFchNacimiento, datetime,>"
+//                    + "'           ,<rhFchNacimiento, datetime,>"
                     + "'           ," + usuario.getRhCodDeptoOrigen()
                     + "           ," + usuario.getRhCodCiudadOrigen()
                     + "           ," + usuario.getRhTelefono()
                     + "           ," + usuario.getRhCelular()
                     + "           ," + usuario.getRhCodTipVivienda()
                     + "           ," + usuario.getRhEstrato()
-                    //                    + "           ,rhGrupoSang, varchar(2),>"
-                    //                    + "           ,rhRH, varchar(1),>"
-                    + "           ," + usuario.getRhCodEstado()
+                    + "           ,'" + usuario.getRhGrupoSang()
+                    + "'           ,'"+ usuario.getRhRH()
+                    + "'           ," + usuario.getRhCodEstado()
                     + "           ,'" + usuario.getRhCorreo() + "');";
 
             System.out.println("sql: " + sql);
