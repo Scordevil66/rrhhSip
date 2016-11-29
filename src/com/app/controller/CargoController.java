@@ -23,13 +23,13 @@ public class CargoController {
     Statement st;
 
     public CargoController() throws SQLException {
-        
+
         this.st = ConexionSQL.conexion();
     }
 
     public List<SadCargo_TO> consultarCargo() throws Exception {
-        
-         this.st = ConexionSQL.conexion();
+
+        this.st = ConexionSQL.conexion();
 
         List<SadCargo_TO> cargos = new ArrayList<>();
 
@@ -57,6 +57,39 @@ public class CargoController {
         }
 
         return cargos;
+
+    }
+
+    public SadCargo_TO consultarCargoId(int idCargo) throws Exception {
+
+        this.st = ConexionSQL.conexion();
+
+        SadCargo_TO cargo = new SadCargo_TO();
+
+        try {
+
+            String sql = "SELECT [carCodigo] "
+                    + "      ,[carDescripcion] "
+                    + "  FROM [dbo].[sadCargo] where [carCodigo] = "+idCargo+";";
+
+            ResultSet rs = null;
+
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                cargo = new SadCargo_TO(rs.getInt(1), rs.getString(2));
+
+            }
+
+        } catch (SQLException e) {
+
+            throw e;
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return cargo;
 
     }
 

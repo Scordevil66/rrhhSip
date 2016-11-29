@@ -56,4 +56,35 @@ public class EstadoController {
 
     }
 
+    public SadEstado_TO consultarEstadoId(Long IdEstado) throws Exception {
+
+        SadEstado_TO estado = new SadEstado_TO();
+
+        try {
+
+            String sql = "SELECT [estCodigo] "
+                    + "      ,[estDescripcion] "
+                    + "  FROM [dbo].[sadEstado] where [estCodigo] = "+IdEstado+" ;";
+
+            ResultSet rs = null;
+
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                estado = new SadEstado_TO(rs.getInt(1), rs.getString(2));
+
+            }
+
+        } catch (SQLException e) {
+
+            throw e;
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return estado;
+
+    }
+
 }

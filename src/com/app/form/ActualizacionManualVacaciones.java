@@ -5,8 +5,12 @@
  */
 package com.app.form;
 
+import com.app.controller.CargoController;
+import com.app.controller.EstadoController;
 import com.app.controller.UserController;
 import com.app.controller.VacacionesController;
+import com.app.models.SadCargo_TO;
+import com.app.models.SadEstado_TO;
 import com.app.models.SadRecursoHumano_TO;
 import com.app.models.SadVacaciones_TO;
 import java.sql.Date;
@@ -57,7 +61,7 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jButtonGuardar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonBuscar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jTextField4 = new javax.swing.JTextField();
@@ -137,10 +141,10 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonBuscarActionPerformed(evt);
             }
         });
 
@@ -176,7 +180,7 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
+                                .addComponent(jButtonBuscar))
                             .addComponent(jTextField2)
                             .addComponent(jTextField8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -224,7 +228,7 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -313,7 +317,7 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formInternalFrameOpened
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
 
         try {
 
@@ -323,9 +327,13 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
 
             UserController userController = null;
             VacacionesController vacacionesController = null;
+            EstadoController estadoController = null;
+            CargoController cargoController = null;
             try {
                 userController = new UserController();
                 vacacionesController = new VacacionesController();
+                estadoController = new EstadoController();
+                cargoController = new CargoController();
             } catch (SQLException ex) {
                 Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -335,10 +343,14 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
             vaciones = vacacionesController.consultarVacaciones(jTextField1.getText().trim());
 
             srrhh2 = userController.consultarClientesPorCedula(srrhh);
+            
+            SadEstado_TO estado = estadoController.consultarEstadoId(srrhh2.getRhCodEstado());
+            
+            SadCargo_TO cargo = cargoController.consultarCargoId(srrhh2.getRhCodCargo());
 
             jTextField2.setText(srrhh2.getRhNombres() + " " + srrhh2.getRhApellido1());
-            jTextField6.setText(srrhh2.getRhCodEstado() + "");
-            jTextField8.setText(srrhh2.getRhCodCargo() + "");
+            jTextField6.setText(estado.getEstDescripcion());
+            jTextField8.setText(cargo.getCarDescripcion());
 
             ///Llenamos la tabla
             DefaultTableModel modelo;
@@ -365,7 +377,7 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
             Logger.getLogger(ActualizacionManualVacaciones.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
 
@@ -403,7 +415,7 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JCheckBox jCheckBox1;
