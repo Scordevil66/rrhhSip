@@ -53,6 +53,7 @@ public class LeerArchivoDeExcel {
     //Funcional
     public static void ActualizarVacaciones(String path, String Cedula) throws IOException, BiffException, Exception {
 
+        VacacionesController vacacionesController = null;
         boolean equals1 = false, equals2 = false, equals3 = false, equals4 = false, equals5 = false;
         File file = new File(path);
         if (file.exists() == true) {
@@ -80,27 +81,30 @@ public class LeerArchivoDeExcel {
             if (equals1 == true && equals2 == true && equals3 == true && equals4 == true
                     && equals5 == true) {
 
-                for (int fila = 1; fila < sheet.getRows(); fila++) { //recorremos las filas
+                if (sheet.getRows() > 0) {
 
-                    accion = sheet.getCell(0, fila).getContents(); //setear la celda leida a nombre
-                    cedula = sheet.getCell(1, fila).getContents();
-                    fechaInicial = sheet.getCell(2, fila).getContents();
-                    fichaFinal = sheet.getCell(3, fila).getContents();
-                    diasPendientes = sheet.getCell(4, fila).getContents();
+                    vacacionesController = new VacacionesController();
 
+                    vacacionesController.eliminarVacaciones(cedula);
+
+                    for (int fila = 1; fila < sheet.getRows(); fila++) { //recorremos las filas
+
+                        accion = sheet.getCell(0, fila).getContents(); //setear la celda leida a nombre
+                        cedula = sheet.getCell(1, fila).getContents();
+                        fechaInicial = sheet.getCell(2, fila).getContents();
+                        fichaFinal = sheet.getCell(3, fila).getContents();
+                        diasPendientes = sheet.getCell(4, fila).getContents();
+
+                        int tomado = 0;
+                        if (Integer.parseInt(diasPendientes) > 0) {
+                            tomado = 1;
+                        }
+                        //Modificaciones
+
+                        vacacionesController.insertarVacaciones(cedula, 0, fechaInicial, fichaFinal, tomado);
+
+                    }
                 }
-
-                int tomado = 0;
-                if(Integer.parseInt(diasPendientes)>0){
-                tomado = 1;
-                }
-                //Modificaciones
-                VacacionesController vacacionesController;
-                vacacionesController = new VacacionesController();
-                
-                vacacionesController.eliminarVacaciones(cedula);
-                
-                vacacionesController.insertarVacaciones(cedula, 0, fechaInicial, fichaFinal, tomado);
 
             } else {
                 JOptionPane.showMessageDialog(null, "Estructura Incorrecta");
