@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -149,6 +150,13 @@ public class VacacionesController {
 
         try {
 
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+
+            Date date = (Date) formatter.parse(fechaIni);
+
+            Date date2 = (Date) formatter.parse(fechaFin);
+
+
             String sql = "INSERT INTO [dbo].[sadVacaciones] "
                     + "           ([Cedula] "
                     + "           ,[Periodo] "
@@ -158,8 +166,8 @@ public class VacacionesController {
                     + "     VALUES "
                     + "           ('" + cedula + "'"
                     + "           ," + periodo
-                    + "           ,'" + fechaIni + "'"
-                    + "           ,'" + fechaFin + "'"
+                    + "           ,'" + date + "'"
+                    + "           ,'" + date2 + "'"
                     + "           ," + tomado + ") ;";
 
             st.executeQuery(sql);
