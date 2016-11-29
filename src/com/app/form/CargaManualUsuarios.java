@@ -315,8 +315,8 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                     .addComponent(jLabel14)
                     .addComponent(jLabel15)
                     .addComponent(jLabel16)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel11))
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tf_celular, javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,11 +448,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel15)
-                            .addComponent(tf_barrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16)
-                            .addComponent(tf_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tf_barrio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -468,17 +464,21 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel26)
-                            .addComponent(tf_correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(tf_correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(tf_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 25, Short.MAX_VALUE)
+                        .addGap(0, 17, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
                             .addComponent(tf_celular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(28, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -536,6 +536,11 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                 srrhh.setRhCelular(Long.parseLong(tf_celular.getText()));
             } else {
                 srrhh.setRhCelular(0);
+            }
+            if (!(tf_telefono.getText().equals(""))) {
+                srrhh.setRhTelefono(Integer.parseInt(tf_celular.getText()));
+            } else {
+                srrhh.setRhTelefono(0);
             }
             srrhh.setRhCorreo(tf_correo.getText());
 //            srrhh.setRhNombreEmergencia(tf_nombreApellidoEmergencia.getText());
@@ -595,7 +600,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                 rh = "-";
             }
             srrhh.setRhRH(rh);
-            
+
             srrhh.setRhGrupoSang(jComboBox5.getSelectedItem().toString().trim());
 
 //            String cargo = (String) jComboBox10.getSelectedItem();
@@ -624,7 +629,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 //                    tf_nombreApellidoEmergencia.setText("");
 //                    tf_telefonoEmergencia.setText("");
                     tf_telefono.setText("");
-                    
+
                     jComboBox1.setSelectedIndex(0);
                     jComboBox2.setSelectedIndex(0);
                     jComboBox3.setSelectedIndex(0);
@@ -633,8 +638,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                     jComboBox6.setSelectedIndex(0);
                     jComboBox9.setSelectedIndex(0);
                     jComboBox14.setSelectedIndex(0);
-                    jComboBox15.setSelectedIndex(0);                    
-                            
+                    jComboBox15.setSelectedIndex(0);
 
                 }
             } catch (Exception ex) {

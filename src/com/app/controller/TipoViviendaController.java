@@ -57,4 +57,34 @@ public class TipoViviendaController {
 
     }
 
+    public SadTipoVivienda_TO consultarTipoViviendaNombre(String nombre) throws Exception {
+
+       SadTipoVivienda_TO tVivienda = new SadTipoVivienda_TO();
+
+        try {
+
+            String sql = "SELECT [stvCodigo]"
+                    + "      ,[stvDescripcion]"
+                    + "  FROM [dbo].[sadTipoVivienda] where [stvDescripcion]= '"+nombre+"';";
+
+            ResultSet rs = null;
+
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                tVivienda = new SadTipoVivienda_TO(rs.getInt(1), rs.getString(2));
+
+            }
+
+        } catch (SQLException e) {
+
+            throw e;
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return tVivienda;
+
+    }
 }

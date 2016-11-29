@@ -5,9 +5,15 @@
  */
 package com.app.utils;
 
+import com.app.controller.CiudadDeptoController;
+import com.app.controller.EstadoCivilController;
+import com.app.controller.TipoViviendaController;
 import com.app.controller.UserController;
 import com.app.form.CargaManualUsuarios;
+import com.app.models.SadCiudadDepto_TO;
+import com.app.models.SadEstadoCivil_TO;
 import com.app.models.SadRecursoHumano_TO;
+import com.app.models.SadTipoVivienda_TO;
 import com.csvreader.CsvReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -138,12 +144,15 @@ public class LeerArchivoDeExcel {
 //        }
 //    }
     public static int CargaDeFormularios(String path) throws FileNotFoundException, IOException, SQLException {
-        
+
         int valor = 0;
 
         SadRecursoHumano_TO srrhh = new SadRecursoHumano_TO();
 
         UserController userController = new UserController();
+        CiudadDeptoController ciudadDeptoController = new CiudadDeptoController();
+        EstadoCivilController civilController = new EstadoCivilController();
+        TipoViviendaController tipoViviendaController = new TipoViviendaController();
 
         CsvReader usuarios_import = new CsvReader(path);
         usuarios_import.readHeaders();
@@ -173,34 +182,71 @@ public class LeerArchivoDeExcel {
 
             if (!(cedula.equals(""))) {
 
-                srrhh.setRhNumIden(Long.parseLong(cedula));
-                srrhh.setRhNombres(nombres);
-                srrhh.setRhApellido1(apellido1);
-                srrhh.setRhApellido2(apellido2);
-                srrhh.setRhDireccion(direccion);
-                if (!(celular.equals(""))) {
-                    srrhh.setRhCelular(Long.parseLong(celular));
-                } else {
-                    srrhh.setRhCelular(0);
-                }
-                srrhh.setRhCorreo(correo);
-
-//      srrhh.set
                 try {
-                    int a = userController.registrarClientes(srrhh);
+
+                    srrhh.setRhNumIden(Long.parseLong(cedula));
+
+                    SadCiudadDepto_TO codDepExp = ciudadDeptoController.consultarDepartamentoNombre(depExpCed);
+                    srrhh.setRhCodDeptoIden(codDepExp.getCdsCodDepto());
+
+                    SadCiudadDepto_TO codCiuExp = ciudadDeptoController.consultarCiudadNombre(ciudadExp);
+                    srrhh.setRhCodCiudadIden(codCiuExp.getCdsCodCiudad());
+
+                    SadCiudadDepto_TO codDepOri = ciudadDeptoController.consultarDepartamentoNombre(dptoOrigen);
+                    srrhh.setRhCodDeptoIden(codDepOri.getCdsCodDepto());
+
+                    SadCiudadDepto_TO codCiuOri = ciudadDeptoController.consultarCiudadNombre(ciudadOrigen);
+                    srrhh.setRhCodCiudadIden(codCiuOri.getCdsCodCiudad());
+
+                    srrhh.setRhNombres(nombres);
+                    srrhh.setRhApellido1(apellido1);
+                    srrhh.setRhApellido2(apellido2);
+                    srrhh.setRhDireccion(direccion);
+                    if (!(celular.equals(""))) {
+                        srrhh.setRhCelular(Long.parseLong(celular));
+                    } else {
+                        srrhh.setRhCelular(0);
+                    }
+                    srrhh.setRhCorreo(correo);
+                    srrhh.setRhEstrato(Integer.parseInt(estrato));
+
+                    int codSexo = 0;
+                    if (sexo.equals("FEMENINO")) {
+
+                        codSexo = 2;
+                    } else if (sexo.equals("MASCULINO")) {
+
+                        codSexo = 1;
+                    }
+                    srrhh.setRhCodSexo(codSexo);
+
+                    srrhh.setRhTelefono(Integer.parseInt(telefono));
+
+                    SadEstadoCivil_TO codEstadoCivil = civilController.consultarEstadoCivilNombre(estadoCivil);
+                    srrhh.setRhCodEstCivil(codEstadoCivil.getSecCodigo());
+
+                    SadTipoVivienda_TO codTipoVivienda = tipoViviendaController.consultarTipoViviendaNombre(tipoVivienda);
+                    srrhh.setRhCodTipVivienda(codTipoVivienda.getStvCodigo());
+
+                    try {
+                        int a = userController.registrarClientes(srrhh);
+
+                    } catch (Exception ex) {
+                        Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                 } catch (Exception ex) {
-                    Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(LeerArchivoDeExcel.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
-            
+
             valor++;
 
         }
 
         usuarios_import.close();
-        
+
         return valor;
 
     }

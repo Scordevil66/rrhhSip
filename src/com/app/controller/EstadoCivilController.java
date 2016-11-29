@@ -55,4 +55,37 @@ public class EstadoCivilController {
 
     }
 
+    public SadEstadoCivil_TO consultarEstadoCivilNombre(String nombre) throws Exception {
+
+        this.st = ConexionSQL.conexion();
+
+        SadEstadoCivil_TO Estado = new SadEstadoCivil_TO();
+
+        try {
+
+            String sql = "SELECT [secCodigo] "
+                    + "      ,[secDescripcion] "
+                    + "  FROM [dbo].[sadEstadoCivil] where [secDescripcion] = '"+nombre+"' ;";
+
+            ResultSet rs = null;
+
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                Estado = new SadEstadoCivil_TO(rs.getInt(1), rs.getString(2));
+
+            }
+
+        } catch (SQLException e) {
+
+            throw e;
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return Estado;
+
+    }
+
 }
