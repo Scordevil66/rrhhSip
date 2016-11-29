@@ -84,6 +84,7 @@ public class LeerArchivoDeExcel {
                 if (sheet.getRows() > 0) {
 
                     String temp = "";
+                    int periodo = 0;
                     int tomado = 0;
 
                     vacacionesController = new VacacionesController();
@@ -99,9 +100,11 @@ public class LeerArchivoDeExcel {
                         if (!(temp.equals(cedula))) {
 
                             vacacionesController.eliminarVacaciones(cedula);
-
+                            periodo = 0;
+                        } else {
+                            periodo++;
                         }
-                        
+
                         String[] dias = diasPendientes.split(",");
                         int dia = Integer.parseInt(dias[0]);
 
@@ -110,7 +113,7 @@ public class LeerArchivoDeExcel {
                         }
                         //Modificaciones
 
-                        vacacionesController.insertarVacaciones(cedula, 0, fechaInicial, fichaFinal, tomado);
+                        vacacionesController.insertarVacaciones(cedula, periodo, fechaInicial, fichaFinal, tomado);
 
                         temp = cedula;
 
