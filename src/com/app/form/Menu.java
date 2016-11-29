@@ -52,6 +52,8 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        dpnEscritorio.setBackground(new java.awt.Color(51, 51, 255));
+
         javax.swing.GroupLayout dpnEscritorioLayout = new javax.swing.GroupLayout(dpnEscritorio);
         dpnEscritorio.setLayout(dpnEscritorioLayout);
         dpnEscritorioLayout.setHorizontalGroup(
