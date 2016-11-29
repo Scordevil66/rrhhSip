@@ -170,6 +170,7 @@ public class VacacionesController {
                     + "           ,'" + date2 + "'"
                     + "           ," + tomado + ") ;";
 
+            System.out.println(sql+"--------------------------");
             st.executeQuery(sql);
 
         } catch (SQLException e) {
