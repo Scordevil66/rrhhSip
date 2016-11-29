@@ -58,6 +58,37 @@ public class CiudadDeptoController {
 
     }
 
+    public SadCiudadDepto_TO consultarDepartamentoNombre(String nombre) throws Exception {
+
+        SadCiudadDepto_TO departamento = new SadCiudadDepto_TO();
+
+        try {
+
+            String sql = "SELECT [cdsCodDepto]"
+                    + "      ,[cdsDepto]"
+                    + "  FROM [dbo].[sadCiudadDepto] where [cdsDepto] = '" + nombre + "' ;";
+
+            ResultSet rs = null;
+
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                departamento = new SadCiudadDepto_TO(rs.getInt(1), rs.getString(2));
+
+            }
+
+        } catch (SQLException e) {
+
+            throw e;
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return departamento;
+
+    }
+
     public List<SadCiudadDepto_TO> consultarCiudad() throws Exception {
 
         List<SadCiudadDepto_TO> ciudades = new ArrayList<>();
@@ -87,6 +118,38 @@ public class CiudadDeptoController {
         }
 
         return ciudades;
+
+    }
+
+    public SadCiudadDepto_TO consultarCiudadNombre(String nombre) throws Exception {
+
+        SadCiudadDepto_TO ciudad = new SadCiudadDepto_TO();
+
+        try {
+
+            String sql = "SELECT [cdsCodDepto]"
+                    + "      ,[cdsCodCiudad]"
+                    + "      ,[cdsCiudad]"
+                    + "  FROM [dbo].[sadCiudadDepto] where [cdsCiudad] = '"+nombre+"' ;";
+
+            ResultSet rs = null;
+
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                ciudad = new SadCiudadDepto_TO(rs.getInt(1), rs.getInt(2), rs.getString(3));
+
+            }
+
+        } catch (SQLException e) {
+
+            throw e;
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return ciudad;
 
     }
 
