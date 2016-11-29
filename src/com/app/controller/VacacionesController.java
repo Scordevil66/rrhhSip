@@ -102,8 +102,7 @@ public class VacacionesController {
         try {
 
             String sql = "UPDATE [dbo].[sadVacaciones] "
-                    + "   SET [Cedula] = '"+cedula+"'"
-                    + "      ,[Periodo] = "+nPeriodo
+                    + "   SET  [Periodo] = "+nPeriodo
                     + "      ,[Fechaini] = '"+nFechaIni+"'"
                     + "      ,[Fechafin] = '"+nFechaFin+"'"
                     + "      ,[Tomado] = "+tomado
