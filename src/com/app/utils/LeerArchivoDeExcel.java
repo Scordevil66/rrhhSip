@@ -85,7 +85,7 @@ public class LeerArchivoDeExcel {
 
                     vacacionesController = new VacacionesController();
 
-                    vacacionesController.eliminarVacaciones(cedula);
+                    vacacionesController.eliminarVacaciones(Cedula);
 
                     for (int fila = 1; fila < sheet.getRows(); fila++) { //recorremos las filas
 
