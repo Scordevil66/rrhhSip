@@ -292,6 +292,8 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
+        jDateChooser1.setDateFormatString("dd/MM/yyyy");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -594,6 +596,8 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             srrhh.setRhRH(rh);
 
             srrhh.setRhGrupoSang(jComboBox5.getSelectedItem().toString().trim());
+            
+            srrhh.setRhFchNacimientoString(jDateChooser1.getDateFormatString());
 
             //            String cargo = (String) jComboBox10.getSelectedItem();
             //            String[] cargoA = cargo.split(" - ");
