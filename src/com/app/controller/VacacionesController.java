@@ -150,12 +150,6 @@ public class VacacionesController {
 
         try {
 
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-
-            java.util.Date date = formatter.parse(fechaIni);
-
-            java.util.Date date2 = formatter.parse(fechaFin);
-
 
             String sql = "INSERT INTO [dbo].[sadVacaciones] "
                     + "           ([Cedula] "
@@ -166,8 +160,8 @@ public class VacacionesController {
                     + "     VALUES "
                     + "           ('" + cedula + "'"
                     + "           ," + periodo
-                    + "           ,'" + date + "'"
-                    + "           ,'" + date2 + "'"
+                    + "           ,CONVERT(VARCHAR, '"+fechaIni+"', 103)"
+                    + "           ,CONVERT(VARCHAR, '"+fechaFin+"', 103)"
                     + "           ," + tomado + ") ;";
 
             System.out.println(sql+"--------------------------");
