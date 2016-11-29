@@ -36,7 +36,7 @@ public class VacacionesController {
                     + "      ,[Fechaini] "
                     + "      ,[Fechafin] "
                     + "      ,[Tomado] "
-                    + "  FROM [dbo].[sadVacaciones];";
+                    + "  FROM [dbo].[sadVacaciones] where [Cedula] = '"+cedula+"' ;";
 
             ResultSet rs = null;
 

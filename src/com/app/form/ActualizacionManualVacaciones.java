@@ -156,6 +156,12 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
 
         jLabel10.setText("Tomado:");
 
+        jTextField2.setEditable(false);
+
+        jTextField6.setEditable(false);
+
+        jTextField8.setEditable(false);
+
         jButtonEditar.setText("Editar");
         jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,10 +195,8 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
                         .addComponent(jTextField6)
                         .addGap(176, 176, 176))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -213,13 +217,13 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
                                         .addComponent(jCheckBox1))
                                     .addComponent(jButtonGuardar))
                                 .addGap(29, 29, 29))
-                            .addComponent(jSeparator2))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 843, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jSeparator2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 843, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,24 +297,51 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-       
+
         try {
+
             VacacionesController vacacionesController = null;
-            
+
             vacacionesController = new VacacionesController();
             int tomado = 0;
-            if(jCheckBox1.isSelected()==true){
+            if (jCheckBox1.isSelected() == true) {
                 tomado = 1;
-                
+
             }
+
+            int a = jTable1.getSelectedRow();
+
+            vacacionesController.editarVacaciones(jTextField1.getText(), Integer.parseInt(jTable1.getValueAt(a, 0).toString()), Integer.parseInt(jTextField3.getText().trim()), jTable1.getValueAt(a, 1).toString(), jTextField4.getText(), jTable1.getValueAt(a, 2).toString(), jTextField5.getText(), tomado);
+
+            JOptionPane.showMessageDialog(null,
+                    "Modificación Satisfactoria");
             
-             int a = jTable1.getSelectedRow();
-            
-            vacacionesController.editarVacaciones(jTextField1.getText(), Integer.parseInt(jTable1.getValueAt(a, 0).toString()), Integer.parseInt(jTextField1.getText().trim()),  jTable1.getValueAt(a, 1).toString(), jTextField4.getText() , jTable1.getValueAt(a, 2).toString(), jTextField5.getText(),  tomado);
+            List<SadVacaciones_TO> vaciones = vacacionesController.consultarVacaciones(jTextField1.getText().trim());
+
+            DefaultTableModel modelo;
+            modelo = new DefaultTableModel();
+
+            jTable1.setModel(modelo);
+
+            modelo.addColumn("Periodo");
+            modelo.addColumn("Fecha Inicio");
+            modelo.addColumn("Fecha Fin");
+            modelo.addColumn("Tomado");
+
+            for (int i = 0; i < vaciones.size(); i++) {
+                Object[] object = new Object[4];
+                object[0] = vaciones.get(i).getPeriodo();
+                object[1] = vaciones.get(i).getFechaIni();
+                object[2] = vaciones.get(i).getFechaFin();
+                object[3] = vaciones.get(i).getTomado();
+
+                modelo.addRow(object);
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(ActualizacionManualVacaciones.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
@@ -320,6 +351,11 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
 
         try {
+
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jCheckBox1.setSelected(false);
 
             SadRecursoHumano_TO srrhh = new SadRecursoHumano_TO();
             SadRecursoHumano_TO srrhh2 = new SadRecursoHumano_TO();
@@ -340,12 +376,14 @@ public class ActualizacionManualVacaciones extends javax.swing.JInternalFrame {
 
             srrhh.setRhNumIden(Long.parseLong(jTextField1.getText().trim()));
 
+            vaciones = new ArrayList<>();
+
             vaciones = vacacionesController.consultarVacaciones(jTextField1.getText().trim());
 
             srrhh2 = userController.consultarClientesPorCedula(srrhh);
-            
+
             SadEstado_TO estado = estadoController.consultarEstadoId(srrhh2.getRhCodEstado());
-            
+
             SadCargo_TO cargo = cargoController.consultarCargoId(srrhh2.getRhCodCargo());
 
             jTextField2.setText(srrhh2.getRhNombres() + " " + srrhh2.getRhApellido1());
