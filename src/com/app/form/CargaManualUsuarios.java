@@ -173,7 +173,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
         tf_nombres = new javax.swing.JTextField();
         tf_apellido1 = new javax.swing.JTextField();
         tf_apellido2 = new javax.swing.JTextField();
-        tf_fechaNac = new javax.swing.JTextField();
         jComboBox3 = new javax.swing.JComboBox();
         jComboBox4 = new javax.swing.JComboBox();
         jComboBox5 = new javax.swing.JComboBox();
@@ -195,6 +194,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
         jLabel33 = new javax.swing.JLabel();
         jComboBox15 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -324,8 +324,8 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                     .addComponent(jComboBox4, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(tf_fechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel21)
                         .addGap(10, 10, 10)
                         .addComponent(tf_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -403,11 +403,12 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                                 .addComponent(tf_apellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tf_apellido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(tf_fechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tf_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel21))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel7)
+                                .addComponent(tf_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel21))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
@@ -534,8 +535,8 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                 srrhh.setRhTelefono(0);
             }
             srrhh.setRhCorreo(tf_correo.getText());
-//            srrhh.setRhNombreEmergencia(tf_nombreApellidoEmergencia.getText());
-//            srrhh.setRhTelEmergencia(tf_telefonoEmergencia.getText());
+            //            srrhh.setRhNombreEmergencia(tf_nombreApellidoEmergencia.getText());
+            //            srrhh.setRhTelEmergencia(tf_telefonoEmergencia.getText());
 
             String depIden = (String) jComboBox1.getSelectedItem();
             String[] depIdenA = depIden.split(" - ");
@@ -567,10 +568,10 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             int codTipoViviendaA = Integer.parseInt(tipoViviendaA[0]);
             srrhh.setRhCodTipVivienda(codTipoViviendaA);
 
-//            int codEstrato = 0;
-//            if (!(jComboBox14.getSelectedItem().toString().equals("Seleccione"))) {
-            int codEstrato = Integer.parseInt(jComboBox14.getSelectedItem().toString());
-//            }
+            //            int codEstrato = 0;
+            //            if (!(jComboBox14.getSelectedItem().toString().equals("Seleccione"))) {
+                int codEstrato = Integer.parseInt(jComboBox14.getSelectedItem().toString());
+                //            }
             srrhh.setRhEstrato(codEstrato);
 
             String estado = (String) jComboBox9.getSelectedItem();
@@ -594,15 +595,15 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 
             srrhh.setRhGrupoSang(jComboBox5.getSelectedItem().toString().trim());
 
-//            String cargo = (String) jComboBox10.getSelectedItem();
-//            String[] cargoA = cargo.split(" - ");
-//            int codCargoA = Integer.parseInt(cargoA[0]);
-//            srrhh.setRhCodCargo(codCargoA);
-//
-//            String dependecia = (String) jComboBox11.getSelectedItem();
-//            String[] dependeciaA = dependecia.split(" - ");
-//            int codDependenciaA = Integer.parseInt(dependeciaA[0]);
-//            srrhh.setrh(codDependenciaA);
+            //            String cargo = (String) jComboBox10.getSelectedItem();
+            //            String[] cargoA = cargo.split(" - ");
+            //            int codCargoA = Integer.parseInt(cargoA[0]);
+            //            srrhh.setRhCodCargo(codCargoA);
+            //
+            //            String dependecia = (String) jComboBox11.getSelectedItem();
+            //            String[] dependeciaA = dependecia.split(" - ");
+            //            int codDependenciaA = Integer.parseInt(dependeciaA[0]);
+            //            srrhh.setrh(codDependenciaA);
             //      srrhh.set
             try {
                 int valor = userController.registrarClientes(srrhh);
@@ -617,8 +618,8 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                     tf_barrio.setText("");
                     tf_celular.setText("");
                     tf_correo.setText("");
-//                    tf_nombreApellidoEmergencia.setText("");
-//                    tf_telefonoEmergencia.setText("");
+                    //                    tf_nombreApellidoEmergencia.setText("");
+                    //                    tf_telefonoEmergencia.setText("");
                     tf_telefono.setText("");
 
                     jComboBox1.setSelectedIndex(0);
@@ -641,10 +642,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void tf_cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_cedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tf_cedulaActionPerformed
-
     private void jRadioButtonPositivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPositivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonPositivoActionPerformed
@@ -652,6 +649,10 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox5ActionPerformed
+
+    private void tf_cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_cedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_cedulaActionPerformed
 
     private void jRadioButtonMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMasculinoActionPerformed
         // TODO add your handling code here:
@@ -671,6 +672,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox jComboBox5;
     private javax.swing.JComboBox jComboBox6;
     private javax.swing.JComboBox jComboBox9;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -707,7 +709,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tf_correo;
     private javax.swing.JTextField tf_direccion;
     private javax.swing.JTextField tf_edad;
-    private javax.swing.JTextField tf_fechaNac;
     private javax.swing.JTextField tf_nombres;
     private javax.swing.JTextField tf_telefono;
     // End of variables declaration//GEN-END:variables
