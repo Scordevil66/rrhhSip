@@ -36,7 +36,7 @@ public class VacacionesController {
                     + "      ,[Fechaini] "
                     + "      ,[Fechafin] "
                     + "      ,[Tomado] "
-                    + "  FROM [dbo].[sadVacaciones] where [Cedula] = '"+cedula+"' ;";
+                    + "  FROM [dbo].[sadVacaciones] where [Cedula] = '" + cedula + "' ;";
 
             ResultSet rs = null;
 
@@ -95,22 +95,81 @@ public class VacacionesController {
 
     }
 
-    public void editarVacaciones(String cedula, int periodo, int nPeriodo, String fechaIni,String nFechaIni, String fechaFin, String nFechaFin, int tomado) throws Exception {
+    public void editarVacaciones(String cedula, int periodo, int nPeriodo, String fechaIni, String nFechaIni, String fechaFin, String nFechaFin, int tomado) throws Exception {
 
         this.st = ConexionSQL.conexion();
 
         try {
 
             String sql = "UPDATE [dbo].[sadVacaciones] "
-                    + "   SET  [Periodo] = "+nPeriodo
-                    + "      ,[Fechaini] = '"+nFechaIni+"'"
-                    + "      ,[Fechafin] = '"+nFechaFin+"'"
-                    + "      ,[Tomado] = "+tomado
+                    + "   SET  [Periodo] = " + nPeriodo
+                    + "      ,[Fechaini] = '" + nFechaIni + "'"
+                    + "      ,[Fechafin] = '" + nFechaFin + "'"
+                    + "      ,[Tomado] = " + tomado
                     + "   where [Cedula] = '" + cedula + "' and [Periodo] = " + periodo + " and [Fechaini] = '" + fechaIni + "' and [Fechafin] = '" + fechaFin + "' ;";
 
             ResultSet rs = null;
 
-           st.executeUpdate(sql);
+            st.executeUpdate(sql);
+
+        } catch (SQLException e) {
+
+            throw e;
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+    }
+
+    public void eliminarVacaciones(String cedula) throws Exception {
+
+        this.st = ConexionSQL.conexion();
+
+        try {
+
+            String sql = "    DELETE FROM[ "
+                    + "    dbo "
+                    + "    ].[sadVacaciones "
+                    + "    ] "
+                    + "   where [Cedula] = '" + cedula + "'  ;";
+
+            ResultSet rs = null;
+
+            st.execute(sql);
+
+        } catch (SQLException e) {
+
+            throw e;
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+    }
+
+    public void insertarVacaciones(String cedula, int periodo, String fechaIni, String fechaFin, int tomado) throws Exception {
+
+        this.st = ConexionSQL.conexion();
+
+        try {
+
+            String sql = "INSERT INTO [dbo].[sadVacaciones] "
+                    + "           ([Cedula] "
+                    + "           ,[Periodo] "
+                    + "           ,[Fechaini] "
+                    + "           ,[Fechafin] "
+                    + "           ,[Tomado]) "
+                    + "     VALUES "
+                    + "           ('" + cedula + "'"
+                    + "           ," + periodo
+                    + "           ,'" + fechaIni + "'"
+                    + "           ,'" + fechaFin + "'"
+                    + "           ," + tomado + ") ;";
+
+            ResultSet rs = null;
+
+            st.execute(sql);
 
         } catch (SQLException e) {
 

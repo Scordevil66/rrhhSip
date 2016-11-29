@@ -5,12 +5,15 @@
  */
 package com.app.form;
 
+import com.app.controller.UserController;
+import com.app.models.SadRecursoHumano_TO;
 import com.app.utils.LeerArchivoDeExcel;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -75,8 +78,8 @@ public class CargaMasivaVacaciones extends javax.swing.JFrame {
 
                         JOptionPane.showMessageDialog(null, "Formato Incorrecto");
                         //Formato Incorrecto
-                    }else{
-                      bAceptar.setEnabled(true);
+                    } else {
+                        bAceptar.setEnabled(true);
                     }
 
 //                            LeerArchivoDeExcel lae = new LeerArchivoDeExcel();
@@ -170,6 +173,11 @@ public class CargaMasivaVacaciones extends javax.swing.JFrame {
         });
 
         jButton2.setText("Buscar Usuario");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Usuario: ");
 
@@ -249,7 +257,7 @@ public class CargaMasivaVacaciones extends javax.swing.JFrame {
 
         LeerArchivoDeExcel lae = new LeerArchivoDeExcel();
         try {
-            lae.ActualizarVacaciones(lPath.getText());
+            lae.ActualizarVacaciones(lPath.getText(), jTextField1.getText());
         } catch (IOException ex) {
             Logger.getLogger(CargaMasivaVacaciones.class.getName()).log(Level.SEVERE, null, ex);
         } catch (BiffException ex) {
@@ -257,6 +265,40 @@ public class CargaMasivaVacaciones extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_bAceptarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        if (jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,
+                    "Debe escribir alguna identificación");
+        } else {
+            SadRecursoHumano_TO srrhh = new SadRecursoHumano_TO();
+            SadRecursoHumano_TO srrhh2 = new SadRecursoHumano_TO();
+            UserController userController = null;
+
+            try {
+
+                userController = new UserController();
+
+                srrhh.setRhNumIden(Long.parseLong(jTextField1.getText().trim()));
+
+                srrhh2 = userController.consultarClientesPorCedula(srrhh);
+
+                if (srrhh2.getRhNumIden() > 0) {
+
+                    jLabel3.setText("Usuario: " + srrhh2.getRhNombres() + " " + srrhh2.getRhApellido1());
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Usuario no existe");
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CargaMasivaVacaciones.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(CargaMasivaVacaciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

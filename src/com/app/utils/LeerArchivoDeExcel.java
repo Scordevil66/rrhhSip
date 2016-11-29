@@ -9,6 +9,7 @@ import com.app.controller.CiudadDeptoController;
 import com.app.controller.EstadoCivilController;
 import com.app.controller.TipoViviendaController;
 import com.app.controller.UserController;
+import com.app.controller.VacacionesController;
 import com.app.form.CargaManualUsuarios;
 import com.app.models.SadCiudadDepto_TO;
 import com.app.models.SadEstadoCivil_TO;
@@ -50,7 +51,7 @@ public class LeerArchivoDeExcel {
     }
 
     //Funcional
-    public static void ActualizarVacaciones(String path) throws IOException, BiffException {
+    public static void ActualizarVacaciones(String path, String Cedula) throws IOException, BiffException, Exception {
 
         boolean equals1 = false, equals2 = false, equals3 = false, equals4 = false, equals5 = false;
         File file = new File(path);
@@ -71,12 +72,12 @@ public class LeerArchivoDeExcel {
                 equals1 = sheet.getCell(0, fil).getContents().equals("ACCION");
                 equals2 = sheet.getCell(1, fil).getContents().equals("Cedula");
                 equals3 = sheet.getCell(2, fil).getContents().equals("Fecha Inicial Periodo");
-                equals4 = sheet.getCell(3, fil).getContents().equals("Fecha Final Periodo");
+//                equals4 = sheet.getCell(3, fil).getContents().equals("Fecha Final Periodo");
                 equals5 = sheet.getCell(4, fil).getContents().equals("Días Vacaciones Pendientes");
 
             }
 
-            if (equals1 == true && equals2 == true && equals3 == true && equals4 == true
+            if (equals1 == true && equals2 == true && equals3 == true //&& equals4 == true
                     && equals5 == true) {
 
                 for (int fila = 1; fila < sheet.getRows(); fila++) { //recorremos las filas
@@ -88,6 +89,19 @@ public class LeerArchivoDeExcel {
                     diasPendientes = sheet.getCell(4, fila).getContents();
 
                 }
+
+                int tomado = 0;
+                if(Integer.parseInt(diasPendientes)>0){
+                tomado = 1;
+                }
+                //Modificaciones
+                VacacionesController vacacionesController;
+                vacacionesController = new VacacionesController();
+                
+                vacacionesController.eliminarVacaciones(cedula);
+                
+                vacacionesController.insertarVacaciones(cedula, 0, fechaInicial, fichaFinal, tomado);
+
             } else {
                 JOptionPane.showMessageDialog(null, "Estructura Incorrecta");
                 //Estructura incorrecta
