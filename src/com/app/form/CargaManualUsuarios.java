@@ -537,6 +537,11 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             } else {
                 srrhh.setRhCelular(0);
             }
+            if (!(tf_telefono.getText().equals(""))) {
+                srrhh.setRhTelefono(Integer.parseInt(tf_celular.getText()));
+            } else {
+                srrhh.setRhTelefono(0);
+            }
             srrhh.setRhCorreo(tf_correo.getText());
 //            srrhh.setRhNombreEmergencia(tf_nombreApellidoEmergencia.getText());
 //            srrhh.setRhTelEmergencia(tf_telefonoEmergencia.getText());
@@ -595,7 +600,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                 rh = "-";
             }
             srrhh.setRhRH(rh);
-            
+
             srrhh.setRhGrupoSang(jComboBox5.getSelectedItem().toString().trim());
 
 //            String cargo = (String) jComboBox10.getSelectedItem();
@@ -624,7 +629,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 //                    tf_nombreApellidoEmergencia.setText("");
 //                    tf_telefonoEmergencia.setText("");
                     tf_telefono.setText("");
-                    
+
                     jComboBox1.setSelectedIndex(0);
                     jComboBox2.setSelectedIndex(0);
                     jComboBox3.setSelectedIndex(0);
@@ -633,8 +638,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                     jComboBox6.setSelectedIndex(0);
                     jComboBox9.setSelectedIndex(0);
                     jComboBox14.setSelectedIndex(0);
-                    jComboBox15.setSelectedIndex(0);                    
-                            
+                    jComboBox15.setSelectedIndex(0);
 
                 }
             } catch (Exception ex) {
