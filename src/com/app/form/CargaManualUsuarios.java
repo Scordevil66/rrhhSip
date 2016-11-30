@@ -532,7 +532,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                 srrhh.setRhCelular(0);
             }
             if (!(tf_telefono.getText().equals(""))) {
-                srrhh.setRhTelefono(Integer.parseInt(tf_celular.getText()));
+                srrhh.setRhTelefono(Integer.parseInt(tf_telefono.getText()));
             } else {
                 srrhh.setRhTelefono(0);
             }
@@ -541,34 +541,58 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             //            srrhh.setRhTelEmergencia(tf_telefonoEmergencia.getText());
 
             String depIden = (String) jComboBox1.getSelectedItem();
-            String[] depIdenA = depIden.split(" - ");
-            int codDep = Integer.parseInt(depIdenA[0]);
-            srrhh.setRhCodDeptoIden(codDep);
+            if (depIden.equals("Seleccione")) {
+                srrhh.setRhCodDeptoIden(0);
+            } else {
+                String[] depIdenA = depIden.split(" - ");
+                int codDep = Integer.parseInt(depIdenA[0]);
+                srrhh.setRhCodDeptoIden(codDep);
+            }
 
-            String ciuIden = (String) jComboBox2.getSelectedItem();
-            String[] ciuIdenA = ciuIden.split(" - ");
-            int codCiu = Integer.parseInt(ciuIdenA[0]);
-            srrhh.setRhCodCiudadIden(codCiu);
+            if (depIden.equals("Seleccione")) {
+                srrhh.setRhCodCiudadIden(0);
+            } else {
+                String ciuIden = (String) jComboBox2.getSelectedItem();
+                String[] ciuIdenA = ciuIden.split(" - ");
+                int codCiu = Integer.parseInt(ciuIdenA[0]);
+                srrhh.setRhCodCiudadIden(codCiu);
+            }
 
-            String depOri = (String) jComboBox3.getSelectedItem();
-            String[] depOriA = depOri.split(" - ");
-            int codDepOri = Integer.parseInt(depOriA[0]);
-            srrhh.setRhCodDeptoOrigen(codDepOri);
+            if (depIden.equals("Seleccione")) {
+                srrhh.setRhCodDeptoOrigen(0);
+            } else {
+                String depOri = (String) jComboBox3.getSelectedItem();
+                String[] depOriA = depOri.split(" - ");
+                int codDepOri = Integer.parseInt(depOriA[0]);
+                srrhh.setRhCodDeptoOrigen(codDepOri);
+            }
 
-            String ciuOri = (String) jComboBox4.getSelectedItem();
-            String[] ciuOriA = ciuOri.split(" - ");
-            int codCiuOri = Integer.parseInt(ciuOriA[0]);
-            srrhh.setRhCodCiudadOrigen(codCiuOri);
+            if (depIden.equals("Seleccione")) {
+                srrhh.setRhCodCiudadOrigen(0);
+            } else {
+                String ciuOri = (String) jComboBox4.getSelectedItem();
+                String[] ciuOriA = ciuOri.split(" - ");
+                int codCiuOri = Integer.parseInt(ciuOriA[0]);
+                srrhh.setRhCodCiudadOrigen(codCiuOri);
+            }
 
-            String estadoCivil = (String) jComboBox6.getSelectedItem();
-            String[] estadoCivilA = estadoCivil.split(" - ");
-            int codEstadoCivil = Integer.parseInt(estadoCivilA[0]);
-            srrhh.setRhCodEstCivil(codEstadoCivil);
+            if (depIden.equals("Seleccione")) {
+                srrhh.setRhCodEstCivil(0);
+            } else {
+                String estadoCivil = (String) jComboBox6.getSelectedItem();
+                String[] estadoCivilA = estadoCivil.split(" - ");
+                int codEstadoCivil = Integer.parseInt(estadoCivilA[0]);
+                srrhh.setRhCodEstCivil(codEstadoCivil);
+            }
 
-            String tipoVivienda = (String) jComboBox15.getSelectedItem();
-            String[] tipoViviendaA = tipoVivienda.split(" - ");
-            int codTipoViviendaA = Integer.parseInt(tipoViviendaA[0]);
-            srrhh.setRhCodTipVivienda(codTipoViviendaA);
+            if (depIden.equals("Seleccione")) {
+                srrhh.setRhCodTipVivienda(0);
+            } else {
+                String tipoVivienda = (String) jComboBox15.getSelectedItem();
+                String[] tipoViviendaA = tipoVivienda.split(" - ");
+                int codTipoViviendaA = Integer.parseInt(tipoViviendaA[0]);
+                srrhh.setRhCodTipVivienda(codTipoViviendaA);
+            }
 
             //            int codEstrato = 0;
             //            if (!(jComboBox14.getSelectedItem().toString().equals("Seleccione"))) {
@@ -576,10 +600,14 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             //            }
             srrhh.setRhEstrato(codEstrato);
 
-            String estado = (String) jComboBox9.getSelectedItem();
-            String[] estadoA = estado.split(" - ");
-            int codEstadoA = Integer.parseInt(estadoA[0]);
-            srrhh.setRhCodEstado(codEstadoA);
+            if (depIden.equals("Seleccione")) {
+                srrhh.setRhCodEstado(0);
+            } else {
+                String estado = (String) jComboBox9.getSelectedItem();
+                String[] estadoA = estado.split(" - ");
+                int codEstadoA = Integer.parseInt(estadoA[0]);
+                srrhh.setRhCodEstado(codEstadoA);
+            }
 
             if (jRadioButtonFemenino.isSelected() == true) {
                 sexo = 2;
