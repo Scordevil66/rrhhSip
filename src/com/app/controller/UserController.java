@@ -71,7 +71,7 @@ public class UserController {
                     + "           ,'" + usuario.getRhDireccion()
                     + "'           ,'" + usuario.getRhBarrio()
                     + "'           ,CONVERT(VARCHAR, '" + mesN+"/"+diaN+"/" +anioN +"', 103)"
-                    + "'           ," + usuario.getRhCodDeptoOrigen()
+                    + "           ," + usuario.getRhCodDeptoOrigen()
                     + "           ," + usuario.getRhCodCiudadOrigen()
                     + "           ," + usuario.getRhTelefono()
                     + "           ," + usuario.getRhCelular()

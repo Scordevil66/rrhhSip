@@ -18,7 +18,9 @@ import com.app.models.SadEstado_TO;
 import com.app.models.SadRecursoHumano_TO;
 import com.app.models.SadTipoVivienda_TO;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -292,8 +294,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
-        jDateChooser1.setDateFormatString("dd/MM/yyyy");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -405,7 +405,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                                 .addComponent(tf_apellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tf_apellido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel7)
                                 .addComponent(tf_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -572,8 +572,8 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 
             //            int codEstrato = 0;
             //            if (!(jComboBox14.getSelectedItem().toString().equals("Seleccione"))) {
-                int codEstrato = Integer.parseInt(jComboBox14.getSelectedItem().toString());
-                //            }
+            int codEstrato = Integer.parseInt(jComboBox14.getSelectedItem().toString());
+            //            }
             srrhh.setRhEstrato(codEstrato);
 
             String estado = (String) jComboBox9.getSelectedItem();
@@ -596,8 +596,14 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             srrhh.setRhRH(rh);
 
             srrhh.setRhGrupoSang(jComboBox5.getSelectedItem().toString().trim());
-            
-            srrhh.setRhFchNacimientoString(jDateChooser1.getDateFormatString());
+
+            String formato = jDateChooser1.getDateFormatString();
+            Date date = jDateChooser1.getDate();
+
+            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+            String fnacim = String.valueOf(sdf.format(date));
+
+            srrhh.setRhFchNacimientoString(fnacim);
 
             //            String cargo = (String) jComboBox10.getSelectedItem();
             //            String[] cargoA = cargo.split(" - ");
