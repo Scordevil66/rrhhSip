@@ -27,6 +27,8 @@ public class TipoViviendaController {
     }
 
     public List<SadTipoVivienda_TO> consultarTipoVivienda() throws Exception {
+        
+        this.st = ConexionSQL.conexion();
 
         List<SadTipoVivienda_TO> tViviendas = new ArrayList<>();
 
@@ -58,14 +60,16 @@ public class TipoViviendaController {
     }
 
     public SadTipoVivienda_TO consultarTipoViviendaNombre(String nombre) throws Exception {
+        
+        this.st = ConexionSQL.conexion();
 
-       SadTipoVivienda_TO tVivienda = new SadTipoVivienda_TO();
+        SadTipoVivienda_TO tVivienda = new SadTipoVivienda_TO();
 
         try {
 
-            String sql = "SELECT [stvCodigo]"
-                    + "      ,[stvDescripcion]"
-                    + "  FROM [dbo].[sadTipoVivienda] where [stvDescripcion]= '"+nombre+"';";
+            String sql = " SELECT [stvCodigo] "
+                    + "      ,[stvDescripcion] "
+                    + "  FROM [dbo].[sadTipoVivienda] where [stvDescripcion] = '"+nombre+"';";
 
             ResultSet rs = null;
 

@@ -89,7 +89,7 @@ public class LeerArchivoDeExcel {
 
                     vacacionesController = new VacacionesController();
 
-                    for (int fila = 1; fila < (sheet.getRows()-1); fila++) { //recorremos las filas
+                    for (int fila = 1; fila < (sheet.getRows() - 1); fila++) { //recorremos las filas
 
                         accion = sheet.getCell(0, fila).getContents(); //setear la celda leida a nombre
                         cedula = sheet.getCell(1, fila).getContents();
@@ -118,7 +118,7 @@ public class LeerArchivoDeExcel {
                         temp = cedula;
 
                     }
-                     JOptionPane.showMessageDialog(null, "Registros realizados Satisfactoriamente");
+                    JOptionPane.showMessageDialog(null, "Registros realizados Satisfactoriamente");
                 }
 
             } else {
@@ -211,7 +211,8 @@ public class LeerArchivoDeExcel {
             String celular = array[13].trim();
             String tipoVivienda = array[14].trim();
             String estrato = array[15].trim();
-            String correo = array[16].trim();
+            String estado = array[16].trim();
+            String correo = array[17].trim();
 
             if (!(cedula.equals(""))) {
 
@@ -260,9 +261,17 @@ public class LeerArchivoDeExcel {
 
                     SadTipoVivienda_TO codTipoVivienda = tipoViviendaController.consultarTipoViviendaNombre(tipoVivienda);
                     srrhh.setRhCodTipVivienda(codTipoVivienda.getStvCodigo());
-                    
+
                     srrhh.setRhFchNacimientoString(fechaNacimiento);
+                    if (estado.equals("ACTIVO")) {
+                        srrhh.setRhCodEstado(1);
+                    } else {
+                        srrhh.setRhCodEstado(0);
+                    }
                     
+                    srrhh.setRhGrupoSang("");
+                    srrhh.setRhRH("");
+
                     try {
                         int a = userController.registrarClientes(srrhh);
 

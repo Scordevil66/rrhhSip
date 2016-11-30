@@ -52,7 +52,7 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        dpnEscritorio.setBackground(new java.awt.Color(51, 51, 255));
+        dpnEscritorio.setBackground(new java.awt.Color(153, 153, 255));
 
         javax.swing.GroupLayout dpnEscritorioLayout = new javax.swing.GroupLayout(dpnEscritorio);
         dpnEscritorio.setLayout(dpnEscritorioLayout);
@@ -92,7 +92,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Crear / Editar");
+        jMenuItem1.setText("Crear");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
