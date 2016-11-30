@@ -19,6 +19,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -46,7 +47,9 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
         vn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JFileChooser se = new JFileChooser();
-
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("CSV", "csv");
+        se.setFileFilter(filtro);
+        
         JLabel ruta = new JLabel("");
         JLabel nombreArchivo = new JLabel("");
 
@@ -232,12 +235,12 @@ public class CargaMasivaUsuario extends javax.swing.JFrame {
 
             if (valor > 0) {
                 JOptionPane.showMessageDialog(null, "Registro realizado satisfactoriamente");
-                
+
                 l_nombre.setText("");
                 bAceptar.setEnabled(false);
 
             }
-            
+
         } catch (IOException ex) {
             Logger.getLogger(CargaMasivaUsuario.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

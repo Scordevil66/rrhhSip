@@ -20,6 +20,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import jxl.read.biff.BiffException;
 
 /**
@@ -48,7 +49,8 @@ public class CargaMasivaVacaciones extends javax.swing.JFrame {
         vn.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JFileChooser se = new JFileChooser();
-
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("XLS", "xls");
+        se.setFileFilter(filtro);
         JLabel ruta = new JLabel("");
         JLabel nombreArchivo = new JLabel("");
 
