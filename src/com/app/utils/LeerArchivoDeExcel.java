@@ -269,8 +269,8 @@ public class LeerArchivoDeExcel {
                         srrhh.setRhCodEstado(0);
                     }
                     
-                    srrhh.setRhGrupoSang("");
-                    srrhh.setRhRH("");
+                    srrhh.setRhGrupoSang("O");
+                    srrhh.setRhRH("+");
 
                     try {
                         int a = userController.registrarClientes(srrhh);
