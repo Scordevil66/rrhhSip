@@ -213,6 +213,8 @@ public class LeerArchivoDeExcel {
             String estrato = array[15].trim();
             String estado = array[16].trim();
             String correo = array[17].trim();
+            String grupoSanguineo = array[18].trim();
+            String tipoSanguineo = array[19].trim();
 
             if (!(cedula.equals(""))) {
 
@@ -269,8 +271,8 @@ public class LeerArchivoDeExcel {
                         srrhh.setRhCodEstado(0);
                     }
                     
-                    srrhh.setRhGrupoSang("O");
-                    srrhh.setRhRH("+");
+                    srrhh.setRhGrupoSang(grupoSanguineo);
+                    srrhh.setRhRH(tipoSanguineo);
 
                     try {
                         int a = userController.registrarClientes(srrhh);
