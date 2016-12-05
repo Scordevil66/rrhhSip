@@ -51,6 +51,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu4.setText("jMenu4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImages(null);
 
         dpnEscritorio.setBackground(new java.awt.Color(153, 153, 255));
 
