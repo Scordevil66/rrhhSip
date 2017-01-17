@@ -134,13 +134,25 @@ public class frmLogin extends javax.swing.JFrame {
 //            txtUsuario.requestFocusInWindow();
 //            return;
 //        }
+        String usuario, clave;
+        usuario = txtUsuario.getText().trim();
+        clave = new String(txtClave.getPassword());
 
-        Menu miPrincipal = new Menu();
-        this.setVisible(false);
-        miPrincipal.setExtendedState(this.MAXIMIZED_BOTH);
-        miPrincipal.setLocationRelativeTo(null);
-        miPrincipal.setVisible(true);
+        if (usuario.equals("Administrador") && clave.equals("Redeban2017")) {
+            
+            GestorDB cmu = new GestorDB();
 
+            cmu.setVisible(true);
+
+        } else {
+           
+            Menu miPrincipal = new Menu();
+            this.setVisible(false);
+            miPrincipal.setExtendedState(this.MAXIMIZED_BOTH);
+            miPrincipal.setLocationRelativeTo(null);
+            miPrincipal.setVisible(true);
+
+        }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**

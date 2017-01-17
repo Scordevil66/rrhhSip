@@ -7,6 +7,8 @@ package com.app.conexion;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -156,5 +158,36 @@ public class ConexionSQL {
             System.out.println("Error al leer");
         }
     }
+    
+    public static void ActualizarConexion(String url, String user, String password, String nameDb){
+    
+        System.out.println("----"+url+user+password+nameDb);
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("C:\\RRHH\\Conexion.txt");
+            pw = new PrintWriter(fichero);
+
+            
+            pw.println("url=" + url);
+            pw.println("user=" + user);
+            pw.println("password=" + password);
+            pw.println("db=" + nameDb);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           if (null != fichero)
+              fichero.close();
+           } catch (Exception e2) {
+              e2.printStackTrace();
+           }
+        }
+    }
+    
 
 }
