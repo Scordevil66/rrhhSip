@@ -5,6 +5,7 @@
  */
 package com.app.conexion;
 
+import com.app.utils.StringEncrypt;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -101,7 +102,7 @@ public class ConexionSQL {
             // RUTA DE LA BASE DE DATOS
             //  149.56.93.6
             //  String url = "jdbc:mysql://149.56.93.6:3306/smsrenta_actualizada";
-            url = "jdbc:sqlserver://" + url+";databaseName="+db;
+            url = "jdbc:sqlserver://" + url + ";databaseName=" + db;
             // CONECCION A LA BASE DE DATOS
             cn = DriverManager.getConnection(url, user, clave);
             // TRAE LOS DATOS
@@ -127,6 +128,9 @@ public class ConexionSQL {
         //Creamos un String que va a contener todo el texto del archivo
         String texto = "";
 
+        String key = "92AE31A79FEEB2A3"; //llave
+        String iv = "0123456789ABCDEF"; // vector de inicialización
+
         try {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
             FileReader lector = new FileReader("C:\\RRHH\\Conexion.txt");
@@ -136,19 +140,23 @@ public class ConexionSQL {
 
 //Con el siguiente ciclo extraemos todo el contenido del objeto "contenido" y lo mostramos
             while ((texto = contenido.readLine()) != null) {
-                String[] Con = texto.split("=");
+                String[] Con = texto.split(":");
                 if (Con[0].equals("url")) {
                     url = Con[1];
+                    url = StringEncrypt.decrypt(key, iv,url );
                 }
                 if (Con[0].equals("user")) {
                     user = Con[1];
+                    user = StringEncrypt.decrypt(key, iv,user );
                 }
                 if (Con[0].equals("password")) {
                     clave = Con[1];
+                    clave = StringEncrypt.decrypt(key, iv,clave );
                 }
 
                 if (Con[0].equals("db")) {
                     db = Con[1];
+                    db = StringEncrypt.decrypt(key, iv,db );
                 }
 
                 System.out.println("url " + url + " user: " + user + " clave " + clave);
@@ -158,36 +166,34 @@ public class ConexionSQL {
             System.out.println("Error al leer");
         }
     }
-    
-    public static void ActualizarConexion(String url, String user, String password, String nameDb){
-    
-        System.out.println("----"+url+user+password+nameDb);
+
+    public static void ActualizarConexion(String url, String user, String password, String nameDb) {
+
+        System.out.println("----" + url + user + password + nameDb);
         FileWriter fichero = null;
         PrintWriter pw = null;
-        try
-        {
+        try {
             fichero = new FileWriter("C:\\RRHH\\Conexion.txt");
             pw = new PrintWriter(fichero);
 
-            
-            pw.println("url=" + url);
-            pw.println("user=" + user);
-            pw.println("password=" + password);
-            pw.println("db=" + nameDb);
+            pw.println("url:" + url);
+            pw.println("user:" + user);
+            pw.println("password:" + password);
+            pw.println("db:" + nameDb);
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-           try {
-           // Nuevamente aprovechamos el finally para 
-           // asegurarnos que se cierra el fichero.
-           if (null != fichero)
-              fichero.close();
-           } catch (Exception e2) {
-              e2.printStackTrace();
-           }
+            try {
+                // Nuevamente aprovechamos el finally para 
+                // asegurarnos que se cierra el fichero.
+                if (null != fichero) {
+                    fichero.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
         }
     }
-    
 
 }

@@ -6,6 +6,9 @@
 package com.app.form;
 
 import com.app.conexion.ConexionSQL;
+import com.app.utils.StringEncrypt;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +22,7 @@ public class GestorDB extends javax.swing.JFrame {
      */
     public GestorDB() {
         initComponents();
-        
+
         this.setLocationRelativeTo(null);
     }
 
@@ -137,22 +140,31 @@ public class GestorDB extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        String url, user, password, nameBd;
-        
-        url = jTextField1.getText().trim();
-        user = jTextField2.getText().trim();
-        password = jTextField3.getText().trim();
-        nameBd = jTextField4.getText().trim();
-        
-        ConexionSQL.ActualizarConexion(url, user, password, nameBd);
-        
-        JOptionPane.showMessageDialog(null, "Actualización realizada satisfactoriamente");
-                
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
+
+        try {
+            String key = "92AE31A79FEEB2A3"; //llave
+            String iv = "0123456789ABCDEF"; // vector de inicialización
+            String url, user, password, nameBd;
+           
+            url = jTextField1.getText().trim();
+            user = jTextField2.getText().trim();
+            password = jTextField3.getText().trim();
+            nameBd = jTextField4.getText().trim();
+            
+            url = StringEncrypt.encrypt(key, iv, url);
+            user = StringEncrypt.encrypt(key, iv, user);
+            password = StringEncrypt.encrypt(key, iv, password);
+            nameBd = StringEncrypt.encrypt(key, iv, nameBd);
+            
+            ConexionSQL.ActualizarConexion(url, user, password, nameBd);
+            JOptionPane.showMessageDialog(null, "Actualización realizada satisfactoriamente");
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+        } catch (Exception ex) {
+            Logger.getLogger(GestorDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
