@@ -185,8 +185,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
         tf_barrio = new javax.swing.JTextField();
         tf_telefono = new javax.swing.JTextField();
         tf_celular = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        tf_edad = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jComboBox9 = new javax.swing.JComboBox();
@@ -256,6 +254,12 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A", "B", "AB", "O" }));
         jComboBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -276,8 +280,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
         buttonGroupRh.add(jRadioButtonNegativo);
         jRadioButtonNegativo.setText("-");
 
-        jLabel21.setText("Edad:");
-
         jLabel8.setText("Estado:");
 
         jLabel26.setText("Correo Institucional:");
@@ -288,6 +290,29 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jDateChooser1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jDateChooser1FocusLost(evt);
+            }
+        });
+        jDateChooser1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jDateChooser1MouseClicked(evt);
+            }
+        });
+        jDateChooser1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jDateChooser1InputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+        jDateChooser1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jDateChooser1KeyPressed(evt);
             }
         });
 
@@ -322,12 +347,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                     .addComponent(jComboBox6, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox4, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel21)
-                        .addGap(10, 10, 10)
-                        .addComponent(tf_edad, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tf_nombres, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -349,7 +368,8 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                                 .addComponent(jRadioButtonNegativo))
                             .addComponent(jRadioButtonMasculino, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 203, Short.MAX_VALUE))
-                    .addComponent(tf_cedula, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(tf_cedula, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -403,10 +423,7 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
                                 .addComponent(tf_apellido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel7)
-                                .addComponent(tf_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel21))
+                            .addComponent(jLabel7)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -513,159 +530,184 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
 
         if (!(tf_cedula.getText().equals(""))) {
 
-            srrhh.setRhNumIden(Long.parseLong(tf_cedula.getText()));
-            srrhh.setRhNombres(tf_nombres.getText());
-            srrhh.setRhApellido1(tf_apellido1.getText());
-            srrhh.setRhApellido2(tf_apellido2.getText());
-            srrhh.setRhDireccion(tf_direccion.getText());
-            srrhh.setRhBarrio(tf_barrio.getText());
-            if (!(tf_celular.getText().equals(""))) {
-                srrhh.setRhCelular(Long.parseLong(tf_celular.getText()));
-            } else {
-                srrhh.setRhCelular(0);
-            }
-            if (!(tf_telefono.getText().equals(""))) {
-                srrhh.setRhTelefono(Integer.parseInt(tf_telefono.getText()));
-            } else {
-                srrhh.setRhTelefono(0);
-            }
-            srrhh.setRhCorreo(tf_correo.getText());
-            //            srrhh.setRhNombreEmergencia(tf_nombreApellidoEmergencia.getText());
-            //            srrhh.setRhTelEmergencia(tf_telefonoEmergencia.getText());
-
-            String depIden = (String) jComboBox1.getSelectedItem();
-            if (depIden.equals("Seleccione")) {
-                srrhh.setRhCodDeptoIden(0);
-            } else {
-                String[] depIdenA = depIden.split(" - ");
-                int codDep = Integer.parseInt(depIdenA[0]);
-                srrhh.setRhCodDeptoIden(codDep);
-            }
-
-            if (depIden.equals("Seleccione")) {
-                srrhh.setRhCodCiudadIden(0);
-            } else {
-                String ciuIden = (String) jComboBox2.getSelectedItem();
-                String[] ciuIdenA = ciuIden.split(" - ");
-                int codCiu = Integer.parseInt(ciuIdenA[0]);
-                srrhh.setRhCodCiudadIden(codCiu);
-            }
-
-            if (depIden.equals("Seleccione")) {
-                srrhh.setRhCodDeptoOrigen(0);
-            } else {
-                String depOri = (String) jComboBox3.getSelectedItem();
-                String[] depOriA = depOri.split(" - ");
-                int codDepOri = Integer.parseInt(depOriA[0]);
-                srrhh.setRhCodDeptoOrigen(codDepOri);
-            }
-
-            if (depIden.equals("Seleccione")) {
-                srrhh.setRhCodCiudadOrigen(0);
-            } else {
-                String ciuOri = (String) jComboBox4.getSelectedItem();
-                String[] ciuOriA = ciuOri.split(" - ");
-                int codCiuOri = Integer.parseInt(ciuOriA[0]);
-                srrhh.setRhCodCiudadOrigen(codCiuOri);
-            }
-
-            if (depIden.equals("Seleccione")) {
-                srrhh.setRhCodEstCivil(0);
-            } else {
-                String estadoCivil = (String) jComboBox6.getSelectedItem();
-                String[] estadoCivilA = estadoCivil.split(" - ");
-                int codEstadoCivil = Integer.parseInt(estadoCivilA[0]);
-                srrhh.setRhCodEstCivil(codEstadoCivil);
-            }
-
-            if (depIden.equals("Seleccione")) {
-                srrhh.setRhCodTipVivienda(0);
-            } else {
-                String tipoVivienda = (String) jComboBox15.getSelectedItem();
-                String[] tipoViviendaA = tipoVivienda.split(" - ");
-                int codTipoViviendaA = Integer.parseInt(tipoViviendaA[0]);
-                srrhh.setRhCodTipVivienda(codTipoViviendaA);
-            }
-
-            //            int codEstrato = 0;
-            //            if (!(jComboBox14.getSelectedItem().toString().equals("Seleccione"))) {
-            int codEstrato = Integer.parseInt(jComboBox14.getSelectedItem().toString());
-            //            }
-            srrhh.setRhEstrato(codEstrato);
-
-            if (depIden.equals("Seleccione")) {
-                srrhh.setRhCodEstado(0);
-            } else {
-                String estado = (String) jComboBox9.getSelectedItem();
-                String[] estadoA = estado.split(" - ");
-                int codEstadoA = Integer.parseInt(estadoA[0]);
-                srrhh.setRhCodEstado(codEstadoA);
-            }
-
-            if (jRadioButtonFemenino.isSelected() == true) {
-                sexo = 2;
-            } else if (jRadioButtonMasculino.isSelected() == true) {
-                sexo = 1;
-            }
-            srrhh.setRhCodSexo(sexo);
-
-            if (jRadioButtonPositivo.isSelected() == true) {
-                rh = "+";
-            } else if (jRadioButtonNegativo.isSelected() == true) {
-                rh = "-";
-            }
-            srrhh.setRhRH(rh);
-
-            srrhh.setRhGrupoSang(jComboBox5.getSelectedItem().toString().trim());
-
             String formato = jDateChooser1.getDateFormatString();
             Date date = jDateChooser1.getDate();
 
             SimpleDateFormat sdf = new SimpleDateFormat(formato);
             String fnacim = String.valueOf(sdf.format(date));
+            String factual = String.valueOf(sdf.format(new Date()));
 
-            srrhh.setRhFchNacimientoString(fnacim);
+            String[] anioS = fnacim.split("/");
+            int anio = Integer.parseInt(anioS[2]);
 
-            //            String cargo = (String) jComboBox10.getSelectedItem();
-            //            String[] cargoA = cargo.split(" - ");
-            //            int codCargoA = Integer.parseInt(cargoA[0]);
-            //            srrhh.setRhCodCargo(codCargoA);
-            //
-            //            String dependecia = (String) jComboBox11.getSelectedItem();
-            //            String[] dependeciaA = dependecia.split(" - ");
-            //            int codDependenciaA = Integer.parseInt(dependeciaA[0]);
-            //            srrhh.setrh(codDependenciaA);
-            //      srrhh.set
-            try {
-                int valor = userController.registrarClientes(srrhh);
-                if (valor > 0) {
-                    JOptionPane.showMessageDialog(null, "Registro realizado satisfactoriamente");
+            String[] anioAS = factual.split("/");
+            int anioA = Integer.parseInt(anioAS[2]);
 
-                    tf_cedula.setText("");
-                    tf_nombres.setText("");
-                    tf_apellido1.setText("");
-                    tf_apellido2.setText("");
-                    tf_direccion.setText("");
-                    tf_barrio.setText("");
-                    tf_celular.setText("");
-                    tf_correo.setText("");
-                    //                    tf_nombreApellidoEmergencia.setText("");
-                    //                    tf_telefonoEmergencia.setText("");
-                    tf_telefono.setText("");
+            int restante = anioA - anio;
 
-                    jComboBox1.setSelectedIndex(0);
-                    jComboBox2.setSelectedIndex(0);
-                    jComboBox3.setSelectedIndex(0);
-                    jComboBox4.setSelectedIndex(0);
-                    jComboBox5.setSelectedIndex(0);
-                    jComboBox6.setSelectedIndex(0);
-                    jComboBox9.setSelectedIndex(0);
-                    jComboBox14.setSelectedIndex(0);
-                    jComboBox15.setSelectedIndex(0);
+            if (restante < 18) {
+                JOptionPane.showMessageDialog(null, "Su edad debe ser superior a los 18 años");
+            } else {
 
+                srrhh.setRhNumIden(Long.parseLong(tf_cedula.getText()));
+                srrhh.setRhNombres(tf_nombres.getText());
+                srrhh.setRhApellido1(tf_apellido1.getText());
+                srrhh.setRhApellido2(tf_apellido2.getText());
+                srrhh.setRhDireccion(tf_direccion.getText());
+                srrhh.setRhBarrio(tf_barrio.getText());
+                if (!(tf_celular.getText().equals(""))) {
+                    srrhh.setRhCelular(Long.parseLong(tf_celular.getText()));
+                } else {
+                    srrhh.setRhCelular(0);
                 }
-            } catch (Exception ex) {
-                Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                if (!(tf_telefono.getText().equals(""))) {
+                    srrhh.setRhTelefono(Integer.parseInt(tf_telefono.getText()));
+                } else {
+                    srrhh.setRhTelefono(0);
+                }
+                srrhh.setRhCorreo(tf_correo.getText());
+                //            srrhh.setRhNombreEmergencia(tf_nombreApellidoEmergencia.getText());
+                //            srrhh.setRhTelEmergencia(tf_telefonoEmergencia.getText());
+
+                String depIden = (String) jComboBox1.getSelectedItem();
+                if (depIden.equals("Seleccione")) {
+                    srrhh.setRhCodDeptoIden(0);
+                } else {
+                    String[] depIdenA = depIden.split(" - ");
+                    int codDep = Integer.parseInt(depIdenA[0]);
+                    srrhh.setRhCodDeptoIden(codDep);
+                }
+
+                String ciuIden = (String) jComboBox2.getSelectedItem();
+                if (ciuIden.equals("Seleccione")) {
+                    srrhh.setRhCodCiudadIden(0);
+                } else {
+                    String[] ciuIdenA = ciuIden.split(" - ");
+                    int codCiu = Integer.parseInt(ciuIdenA[0]);
+                    srrhh.setRhCodCiudadIden(codCiu);
+                }
+
+                String depOri = (String) jComboBox3.getSelectedItem();
+                if (depOri.equals("Seleccione")) {
+                    srrhh.setRhCodDeptoOrigen(0);
+                } else {
+                    String[] depOriA = depOri.split(" - ");
+                    int codDepOri = Integer.parseInt(depOriA[0]);
+                    srrhh.setRhCodDeptoOrigen(codDepOri);
+                }
+
+                String ciuOri = (String) jComboBox4.getSelectedItem();
+                if (ciuOri.equals("Seleccione")) {
+                    srrhh.setRhCodCiudadOrigen(0);
+                } else {
+                    String[] ciuOriA = ciuOri.split(" - ");
+                    int codCiuOri = Integer.parseInt(ciuOriA[0]);
+                    srrhh.setRhCodCiudadOrigen(codCiuOri);
+                }
+
+                String estadoCivil = (String) jComboBox6.getSelectedItem();
+                if (estadoCivil.equals("Seleccione")) {
+                    srrhh.setRhCodEstCivil(0);
+                } else {
+                    String[] estadoCivilA = estadoCivil.split(" - ");
+                    int codEstadoCivil = Integer.parseInt(estadoCivilA[0]);
+                    srrhh.setRhCodEstCivil(codEstadoCivil);
+                }
+
+                String tipoVivienda = (String) jComboBox15.getSelectedItem();
+                if (tipoVivienda.equals("Seleccione")) {
+                    srrhh.setRhCodTipVivienda(0);
+                } else {
+                    String[] tipoViviendaA = tipoVivienda.split(" - ");
+                    int codTipoViviendaA = Integer.parseInt(tipoViviendaA[0]);
+                    srrhh.setRhCodTipVivienda(codTipoViviendaA);
+                }
+
+                //            int codEstrato = 0;
+                //            if (!(jComboBox14.getSelectedItem().toString().equals("Seleccione"))) {
+                String estrato = (String) jComboBox14.getSelectedItem();
+                if (estrato.equals("Seleccione")) {
+                    srrhh.setRhEstrato(0);
+                } else {
+                    String[] estratoA = estrato.split(" - ");
+                    int codEstratoA = Integer.parseInt(estratoA[0]);
+                    srrhh.setRhEstrato(codEstratoA);
+                }
+
+                String estado = (String) jComboBox9.getSelectedItem();
+                if (estado.equals("Seleccione")) {
+                    srrhh.setRhCodEstado(0);
+                } else {
+
+                    String[] estadoA = estado.split(" - ");
+                    int codEstadoA = Integer.parseInt(estadoA[0]);
+                    srrhh.setRhCodEstado(codEstadoA);
+                }
+
+                if (jRadioButtonFemenino.isSelected() == true) {
+                    sexo = 2;
+                } else if (jRadioButtonMasculino.isSelected() == true) {
+                    sexo = 1;
+                }
+                srrhh.setRhCodSexo(sexo);
+
+                if (jRadioButtonPositivo.isSelected() == true) {
+                    rh = "+";
+                } else if (jRadioButtonNegativo.isSelected() == true) {
+                    rh = "-";
+                }
+                srrhh.setRhRH(rh);
+
+                srrhh.setRhGrupoSang(jComboBox5.getSelectedItem().toString().trim());
+
+//            String formato = jDateChooser1.getDateFormatString();
+//            Date date = jDateChooser1.getDate();
+//
+//            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+//            String fnacim = String.valueOf(sdf.format(date));
+                srrhh.setRhFchNacimientoString(fnacim);
+
+                //            String cargo = (String) jComboBox10.getSelectedItem();
+                //            String[] cargoA = cargo.split(" - ");
+                //            int codCargoA = Integer.parseInt(cargoA[0]);
+                //            srrhh.setRhCodCargo(codCargoA);
+                //
+                //            String dependecia = (String) jComboBox11.getSelectedItem();
+                //            String[] dependeciaA = dependecia.split(" - ");
+                //            int codDependenciaA = Integer.parseInt(dependeciaA[0]);
+                //            srrhh.setrh(codDependenciaA);
+                //      srrhh.set
+                try {
+                    int valor = userController.registrarClientes(srrhh);
+                    if (valor > 0) {
+                        JOptionPane.showMessageDialog(null, "Registro realizado satisfactoriamente");
+
+                        tf_cedula.setText("");
+                        tf_nombres.setText("");
+                        tf_apellido1.setText("");
+                        tf_apellido2.setText("");
+                        tf_direccion.setText("");
+                        tf_barrio.setText("");
+                        tf_celular.setText("");
+                        tf_correo.setText("");
+                        //                    tf_nombreApellidoEmergencia.setText("");
+                        //                    tf_telefonoEmergencia.setText("");
+                        tf_telefono.setText("");
+
+                        jComboBox1.setSelectedIndex(0);
+                        jComboBox2.setSelectedIndex(0);
+                        jComboBox3.setSelectedIndex(0);
+                        jComboBox4.setSelectedIndex(0);
+                        jComboBox5.setSelectedIndex(0);
+                        jComboBox6.setSelectedIndex(0);
+                        jComboBox9.setSelectedIndex(0);
+                        jComboBox14.setSelectedIndex(0);
+                        jComboBox15.setSelectedIndex(0);
+
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(CargaManualUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
         } else {
@@ -688,6 +730,29 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     private void jRadioButtonMasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMasculinoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonMasculinoActionPerformed
+
+
+    private void jDateChooser1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDateChooser1KeyPressed
+
+
+    }//GEN-LAST:event_jDateChooser1KeyPressed
+
+    private void jDateChooser1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser1MouseClicked
+
+
+    }//GEN-LAST:event_jDateChooser1MouseClicked
+
+    private void jDateChooser1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jDateChooser1InputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDateChooser1InputMethodTextChanged
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jDateChooser1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jDateChooser1FocusLost
+
+    }//GEN-LAST:event_jDateChooser1FocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -716,7 +781,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel33;
@@ -738,7 +802,6 @@ public final class CargaManualUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tf_celular;
     private javax.swing.JTextField tf_correo;
     private javax.swing.JTextField tf_direccion;
-    private javax.swing.JTextField tf_edad;
     private javax.swing.JTextField tf_nombres;
     private javax.swing.JTextField tf_telefono;
     // End of variables declaration//GEN-END:variables
