@@ -1,0 +1,67 @@
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/">
+<wsdl:types>
+<s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+<s:element name="LoginLDP">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="usuario" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="clave" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="cedula" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+<s:element name="LoginLDPResponse">
+<s:complexType>
+<s:sequence>
+<s:element minOccurs="0" maxOccurs="1" name="LoginLDPResult" type="s:string"/>
+<s:element minOccurs="0" maxOccurs="1" name="cedula" type="s:string"/>
+</s:sequence>
+</s:complexType>
+</s:element>
+</s:schema>
+</wsdl:types>
+<wsdl:message name="LoginLDPSoapIn">
+<wsdl:part name="parameters" element="tns:LoginLDP"/>
+</wsdl:message>
+<wsdl:message name="LoginLDPSoapOut">
+<wsdl:part name="parameters" element="tns:LoginLDPResponse"/>
+</wsdl:message>
+<wsdl:portType name="LDPServiceSoap">
+<wsdl:operation name="LoginLDP">
+<wsdl:input message="tns:LoginLDPSoapIn"/>
+<wsdl:output message="tns:LoginLDPSoapOut"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="LDPServiceSoap" type="tns:LDPServiceSoap">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="LoginLDP">
+<soap:operation soapAction="http://tempuri.org/LoginLDP" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="LDPServiceSoap12" type="tns:LDPServiceSoap">
+<soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="LoginLDP">
+<soap12:operation soapAction="http://tempuri.org/LoginLDP" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="LDPService">
+<wsdl:port name="LDPServiceSoap" binding="tns:LDPServiceSoap">
+<soap:address location="https://10.9.200.188/wsldap/WSLDAP.asmx"/>
+</wsdl:port>
+<wsdl:port name="LDPServiceSoap12" binding="tns:LDPServiceSoap12">
+<soap12:address location="https://10.9.200.188/wsldap/WSLDAP.asmx"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

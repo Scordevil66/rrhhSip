@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://palconsultoria.com/prueba.wsdl" uri="xml-resources/web-service-references/prueba/wsdl/palconsultoria.com/prueba.wsdl"/>
+    <system systemId="http://palconsultoria.com/directorioActivo.wsdl" uri="xml-resources/web-service-references/directorioActivo/wsdl/palconsultoria.com/directorioActivo.wsdl"/>
+</catalog>
