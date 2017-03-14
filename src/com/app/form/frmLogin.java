@@ -5,7 +5,11 @@
  */
 package com.app.form;
 
+import com.app.clases.LDPServiceSoap;
+import com.app.clases.LoginLDP;
+import com.app.clases.LoginLDPResponse;
 import javax.swing.JOptionPane;
+import javax.xml.ws.Holder;
 
 /**
  *
@@ -139,18 +143,35 @@ public class frmLogin extends javax.swing.JFrame {
         clave = new String(txtClave.getPassword());
 
         if (usuario.equals("Administrador") && clave.equals("Redeban2017")) {
-            
+
             GestorDB cmu = new GestorDB();
 
             cmu.setVisible(true);
 
         } else {
-           
-            Menu miPrincipal = new Menu();
-            this.setVisible(false);
-            miPrincipal.setExtendedState(this.MAXIMIZED_BOTH);
-            miPrincipal.setLocationRelativeTo(null);
-            miPrincipal.setVisible(true);
+
+            String cedula = "";
+            
+            Holder<String> id = new Holder<String>();
+            //Consumir directorio activo
+            
+            LDPServiceSoap ldpss = null;
+            
+            LoginLDPResponse lldpr = null;
+            
+            ldpss.loginLDP(usuario, clave, id, null);
+            
+            cedula = lldpr.getCedula();
+
+            if (!(cedula.equals(""))) {
+                Menu miPrincipal = new Menu();
+                this.setVisible(false);
+                miPrincipal.setExtendedState(this.MAXIMIZED_BOTH);
+                miPrincipal.setLocationRelativeTo(null);
+                miPrincipal.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Usuario o clave incorrecta");
+            }
 
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
